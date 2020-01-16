@@ -71,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, user_name, password, signature, telephone, email, job_level, status, is_delete
+    id, user_name userName, password, signature, telephone, email, job_level jobLevel, status, is_delete isDelete
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.assetManage.tusdt.model.UserExample" >
     select
