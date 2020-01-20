@@ -1,5 +1,6 @@
 package com.assetManage.tusdt.service.impl;
 
+import com.assetManage.tusdt.base.common.ResponseData;
 import com.assetManage.tusdt.dao.UserMapper;
 import com.assetManage.tusdt.model.User;
 import com.assetManage.tusdt.service.UserInfoService;
@@ -24,5 +25,17 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     public List<User> getUserList(String userName) {
         return userMapper.selectByUserName(userName);
+    }
+
+    @Override
+    public ResponseData<String> addUser(User user) {
+        ResponseData<String> responseData = new ResponseData<>();
+        Integer result = userMapper.insert(user);
+        if (result == 1) {
+            responseData.setOK("插入成功");
+        } else {
+            responseData.setError("插入失败");
+        }
+        return responseData;
     }
 }

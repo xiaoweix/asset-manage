@@ -5,7 +5,6 @@ import com.assetManage.tusdt.base.constants.Response;
 import com.assetManage.tusdt.model.User;
 import com.assetManage.tusdt.service.UserInfoService;
 import io.swagger.annotations.*;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -49,6 +48,17 @@ public class UserInfoController {
             responseData.setError("获取失败");
         }
         responseData.set("获取成功",userList);
+        return responseData;
+    }
+
+    @ApiOperation(value = "新增一个用户", notes = "增加用户")
+    @ApiResponses({@ApiResponse(code = Response.OK, message = "添加成功"),})
+    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseData<String> addUser(@RequestBody User user) {
+
+        ResponseData<String> responseData;
+        responseData = userInfoService.addUser(user);
         return responseData;
     }
 }

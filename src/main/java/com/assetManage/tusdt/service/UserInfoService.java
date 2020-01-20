@@ -1,5 +1,6 @@
 package com.assetManage.tusdt.service;
 
+import com.assetManage.tusdt.base.common.ResponseData;
 import com.assetManage.tusdt.model.User;
 
 import java.util.List;
@@ -13,4 +14,6 @@ import java.util.List;
 public interface UserInfoService {
 
     List<User> getUserList(String userName);
+
+    ResponseData<String> addUser(User user);
 }
