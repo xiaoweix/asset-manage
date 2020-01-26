@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.assetManage.tusdt.dao.AssetInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.assetManage.tusdt.model.AssetInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="asset_name" property="assetName" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="version" property="version" jdbcType="VARCHAR" />
+    <result column="manufacture" property="manufacture" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="purchase_date" property="purchaseDate" jdbcType="TIMESTAMP" />
+    <result column="life" property="life" jdbcType="INTEGER" />
+    <result column="is_lend" property="isLend" jdbcType="INTEGER" />
+    <result column="is_visible" property="isVisible" jdbcType="INTEGER" />
+    <result column="manage_id" property="manageId" jdbcType="INTEGER" />
+    <result column="warehouse_id" property="warehouseId" jdbcType="INTEGER" />
+    <result column="asset_num" property="assetNum" jdbcType="INTEGER" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, asset_name, type, version, manufacture, price, status, purchase_date, life, is_lend, 
+    is_visible, manage_id, warehouse_id, asset_num, remarks, is_delete
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.assetManage.tusdt.model.AssetInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from asset_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from asset_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from asset_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.assetManage.tusdt.model.AssetInfoExample" >
+    delete from asset_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.assetManage.tusdt.model.AssetInfo" >
+    insert into asset_info (id, asset_name, type, 
+      version, manufacture, price, 
+      status, purchase_date, life, 
+      is_lend, is_visible, manage_id, 
+      warehouse_id, asset_num, remarks, 
+      is_delete)
+    values (#{id,jdbcType=INTEGER}, #{assetName,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{version,jdbcType=VARCHAR}, #{manufacture,jdbcType=VARCHAR}, #{price,jdbcType=BIGINT}, 
+      #{status,jdbcType=INTEGER}, #{purchaseDate,jdbcType=TIMESTAMP}, #{life,jdbcType=INTEGER}, 
+      #{isLend,jdbcType=INTEGER}, #{isVisible,jdbcType=INTEGER}, #{manageId,jdbcType=INTEGER}, 
+      #{warehouseId,jdbcType=INTEGER}, #{assetNum,jdbcType=INTEGER}, #{remarks,jdbcType=VARCHAR}, 
+      #{isDelete,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.assetManage.tusdt.model.AssetInfo" >
+    insert into asset_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="assetName != null" >
+        asset_name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="manufacture != null" >
+        manufacture,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="purchaseDate != null" >
+        purchase_date,
+      </if>
+      <if test="life != null" >
+        life,
+      </if>
+      <if test="isLend != null" >
+        is_lend,
+      </if>
+      <if test="isVisible != null" >
+        is_visible,
+      </if>
+      <if test="manageId != null" >
+        manage_id,
+      </if>
+      <if test="warehouseId != null" >
+        warehouse_id,
+      </if>
+      <if test="assetNum != null" >
+        asset_num,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="assetName != null" >
+        #{assetName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacture != null" >
+        #{manufacture,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="purchaseDate != null" >
+        #{purchaseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="life != null" >
+        #{life,jdbcType=INTEGER},
+      </if>
+      <if test="isLend != null" >
+        #{isLend,jdbcType=INTEGER},
+      </if>
+      <if test="isVisible != null" >
+        #{isVisible,jdbcType=INTEGER},
+      </if>
+      <if test="manageId != null" >
+        #{manageId,jdbcType=INTEGER},
+      </if>
+      <if test="warehouseId != null" >
+        #{warehouseId,jdbcType=INTEGER},
+      </if>
+      <if test="assetNum != null" >
+        #{assetNum,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.assetManage.tusdt.model.AssetInfoExample" resultType="java.lang.Integer" >
+    select count(*) from asset_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update asset_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.assetName != null" >
+        asset_name = #{record.assetName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.version != null" >
+        version = #{record.version,jdbcType=VARCHAR},
+      </if>
+      <if test="record.manufacture != null" >
+        manufacture = #{record.manufacture,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=BIGINT},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.purchaseDate != null" >
+        purchase_date = #{record.purchaseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.life != null" >
+        life = #{record.life,jdbcType=INTEGER},
+      </if>
+      <if test="record.isLend != null" >
+        is_lend = #{record.isLend,jdbcType=INTEGER},
+      </if>
+      <if test="record.isVisible != null" >
+        is_visible = #{record.isVisible,jdbcType=INTEGER},
+      </if>
+      <if test="record.manageId != null" >
+        manage_id = #{record.manageId,jdbcType=INTEGER},
+      </if>
+      <if test="record.warehouseId != null" >
+        warehouse_id = #{record.warehouseId,jdbcType=INTEGER},
+      </if>
+      <if test="record.assetNum != null" >
+        asset_num = #{record.assetNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.remarks != null" >
+        remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDelete != null" >
+        is_delete = #{record.isDelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update asset_info
+    set id = #{record.id,jdbcType=INTEGER},
+      asset_name = #{record.assetName,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
+      version = #{record.version,jdbcType=VARCHAR},
+      manufacture = #{record.manufacture,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=BIGINT},
+      status = #{record.status,jdbcType=INTEGER},
+      purchase_date = #{record.purchaseDate,jdbcType=TIMESTAMP},
+      life = #{record.life,jdbcType=INTEGER},
+      is_lend = #{record.isLend,jdbcType=INTEGER},
+      is_visible = #{record.isVisible,jdbcType=INTEGER},
+      manage_id = #{record.manageId,jdbcType=INTEGER},
+      warehouse_id = #{record.warehouseId,jdbcType=INTEGER},
+      asset_num = #{record.assetNum,jdbcType=INTEGER},
+      remarks = #{record.remarks,jdbcType=VARCHAR},
+      is_delete = #{record.isDelete,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.assetManage.tusdt.model.AssetInfo" >
+    update asset_info
+    <set >
+      <if test="assetName != null" >
+        asset_name = #{assetName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacture != null" >
+        manufacture = #{manufacture,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="purchaseDate != null" >
+        purchase_date = #{purchaseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="life != null" >
+        life = #{life,jdbcType=INTEGER},
+      </if>
+      <if test="isLend != null" >
+        is_lend = #{isLend,jdbcType=INTEGER},
+      </if>
+      <if test="isVisible != null" >
+        is_visible = #{isVisible,jdbcType=INTEGER},
+      </if>
+      <if test="manageId != null" >
+        manage_id = #{manageId,jdbcType=INTEGER},
+      </if>
+      <if test="warehouseId != null" >
+        warehouse_id = #{warehouseId,jdbcType=INTEGER},
+      </if>
+      <if test="assetNum != null" >
+        asset_num = #{assetNum,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.assetManage.tusdt.model.AssetInfo" >
+    update asset_info
+    set asset_name = #{assetName,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      version = #{version,jdbcType=VARCHAR},
+      manufacture = #{manufacture,jdbcType=VARCHAR},
+      price = #{price,jdbcType=BIGINT},
+      status = #{status,jdbcType=INTEGER},
+      purchase_date = #{purchaseDate,jdbcType=TIMESTAMP},
+      life = #{life,jdbcType=INTEGER},
+      is_lend = #{isLend,jdbcType=INTEGER},
+      is_visible = #{isVisible,jdbcType=INTEGER},
+      manage_id = #{manageId,jdbcType=INTEGER},
+      warehouse_id = #{warehouseId,jdbcType=INTEGER},
+      asset_num = #{assetNum,jdbcType=INTEGER},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
