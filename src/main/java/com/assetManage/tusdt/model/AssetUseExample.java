@@ -165,66 +165,6 @@ public class AssetUseExample {
             return (Criteria) this;
         }
 
-        public Criteria andTypeIsNull() {
-            addCriterion("type is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeIsNotNull() {
-            addCriterion("type is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeEqualTo(Integer value) {
-            addCriterion("type =", value, "type");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeNotEqualTo(Integer value) {
-            addCriterion("type <>", value, "type");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeGreaterThan(Integer value) {
-            addCriterion("type >", value, "type");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeGreaterThanOrEqualTo(Integer value) {
-            addCriterion("type >=", value, "type");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeLessThan(Integer value) {
-            addCriterion("type <", value, "type");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeLessThanOrEqualTo(Integer value) {
-            addCriterion("type <=", value, "type");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeIn(List<Integer> values) {
-            addCriterion("type in", values, "type");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeNotIn(List<Integer> values) {
-            addCriterion("type not in", values, "type");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeBetween(Integer value1, Integer value2) {
-            addCriterion("type between", value1, value2, "type");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeNotBetween(Integer value1, Integer value2) {
-            addCriterion("type not between", value1, value2, "type");
-            return (Criteria) this;
-        }
-
         public Criteria andAssetIdIsNull() {
             addCriterion("asset_id is null");
             return (Criteria) this;
@@ -425,6 +365,66 @@ public class AssetUseExample {
             return (Criteria) this;
         }
 
+        public Criteria andMapIdIsNull() {
+            addCriterion("map_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapIdIsNotNull() {
+            addCriterion("map_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapIdEqualTo(Integer value) {
+            addCriterion("map_id =", value, "mapId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapIdNotEqualTo(Integer value) {
+            addCriterion("map_id <>", value, "mapId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapIdGreaterThan(Integer value) {
+            addCriterion("map_id >", value, "mapId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("map_id >=", value, "mapId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapIdLessThan(Integer value) {
+            addCriterion("map_id <", value, "mapId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapIdLessThanOrEqualTo(Integer value) {
+            addCriterion("map_id <=", value, "mapId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapIdIn(List<Integer> values) {
+            addCriterion("map_id in", values, "mapId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapIdNotIn(List<Integer> values) {
+            addCriterion("map_id not in", values, "mapId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapIdBetween(Integer value1, Integer value2) {
+            addCriterion("map_id between", value1, value2, "mapId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("map_id not between", value1, value2, "mapId");
+            return (Criteria) this;
+        }
+
         public Criteria andPurposeIsNull() {
             addCriterion("purpose is null");
             return (Criteria) this;
@@ -552,66 +552,6 @@ public class AssetUseExample {
 
         public Criteria andStartTimeNotBetween(Date value1, Date value2) {
             addCriterion("start_time not between", value1, value2, "startTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andRetTimeIsNull() {
-            addCriterion("ret_time is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andRetTimeIsNotNull() {
-            addCriterion("ret_time is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andRetTimeEqualTo(Date value) {
-            addCriterion("ret_time =", value, "retTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andRetTimeNotEqualTo(Date value) {
-            addCriterion("ret_time <>", value, "retTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andRetTimeGreaterThan(Date value) {
-            addCriterion("ret_time >", value, "retTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andRetTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("ret_time >=", value, "retTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andRetTimeLessThan(Date value) {
-            addCriterion("ret_time <", value, "retTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andRetTimeLessThanOrEqualTo(Date value) {
-            addCriterion("ret_time <=", value, "retTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andRetTimeIn(List<Date> values) {
-            addCriterion("ret_time in", values, "retTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andRetTimeNotIn(List<Date> values) {
-            addCriterion("ret_time not in", values, "retTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andRetTimeBetween(Date value1, Date value2) {
-            addCriterion("ret_time between", value1, value2, "retTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andRetTimeNotBetween(Date value1, Date value2) {
-            addCriterion("ret_time not between", value1, value2, "retTime");
             return (Criteria) this;
         }
 

@@ -235,63 +235,63 @@ public class AssetInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andTypeIsNull() {
-            addCriterion("type is null");
+        public Criteria andTypeIdIsNull() {
+            addCriterion("type_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andTypeIsNotNull() {
-            addCriterion("type is not null");
+        public Criteria andTypeIdIsNotNull() {
+            addCriterion("type_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTypeEqualTo(Integer value) {
-            addCriterion("type =", value, "type");
+        public Criteria andTypeIdEqualTo(Integer value) {
+            addCriterion("type_id =", value, "typeId");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotEqualTo(Integer value) {
-            addCriterion("type <>", value, "type");
+        public Criteria andTypeIdNotEqualTo(Integer value) {
+            addCriterion("type_id <>", value, "typeId");
             return (Criteria) this;
         }
 
-        public Criteria andTypeGreaterThan(Integer value) {
-            addCriterion("type >", value, "type");
+        public Criteria andTypeIdGreaterThan(Integer value) {
+            addCriterion("type_id >", value, "typeId");
             return (Criteria) this;
         }
 
-        public Criteria andTypeGreaterThanOrEqualTo(Integer value) {
-            addCriterion("type >=", value, "type");
+        public Criteria andTypeIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("type_id >=", value, "typeId");
             return (Criteria) this;
         }
 
-        public Criteria andTypeLessThan(Integer value) {
-            addCriterion("type <", value, "type");
+        public Criteria andTypeIdLessThan(Integer value) {
+            addCriterion("type_id <", value, "typeId");
             return (Criteria) this;
         }
 
-        public Criteria andTypeLessThanOrEqualTo(Integer value) {
-            addCriterion("type <=", value, "type");
+        public Criteria andTypeIdLessThanOrEqualTo(Integer value) {
+            addCriterion("type_id <=", value, "typeId");
             return (Criteria) this;
         }
 
-        public Criteria andTypeIn(List<Integer> values) {
-            addCriterion("type in", values, "type");
+        public Criteria andTypeIdIn(List<Integer> values) {
+            addCriterion("type_id in", values, "typeId");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotIn(List<Integer> values) {
-            addCriterion("type not in", values, "type");
+        public Criteria andTypeIdNotIn(List<Integer> values) {
+            addCriterion("type_id not in", values, "typeId");
             return (Criteria) this;
         }
 
-        public Criteria andTypeBetween(Integer value1, Integer value2) {
-            addCriterion("type between", value1, value2, "type");
+        public Criteria andTypeIdBetween(Integer value1, Integer value2) {
+            addCriterion("type_id between", value1, value2, "typeId");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotBetween(Integer value1, Integer value2) {
-            addCriterion("type not between", value1, value2, "type");
+        public Criteria andTypeIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("type_id not between", value1, value2, "typeId");
             return (Criteria) this;
         }
 
@@ -735,6 +735,66 @@ public class AssetInfoExample {
             return (Criteria) this;
         }
 
+        public Criteria andIsTakeIsNull() {
+            addCriterion("is_take is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsTakeIsNotNull() {
+            addCriterion("is_take is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsTakeEqualTo(Integer value) {
+            addCriterion("is_take =", value, "isTake");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsTakeNotEqualTo(Integer value) {
+            addCriterion("is_take <>", value, "isTake");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsTakeGreaterThan(Integer value) {
+            addCriterion("is_take >", value, "isTake");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsTakeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("is_take >=", value, "isTake");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsTakeLessThan(Integer value) {
+            addCriterion("is_take <", value, "isTake");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsTakeLessThanOrEqualTo(Integer value) {
+            addCriterion("is_take <=", value, "isTake");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsTakeIn(List<Integer> values) {
+            addCriterion("is_take in", values, "isTake");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsTakeNotIn(List<Integer> values) {
+            addCriterion("is_take not in", values, "isTake");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsTakeBetween(Integer value1, Integer value2) {
+            addCriterion("is_take between", value1, value2, "isTake");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsTakeNotBetween(Integer value1, Integer value2) {
+            addCriterion("is_take not between", value1, value2, "isTake");
+            return (Criteria) this;
+        }
+
         public Criteria andIsVisibleIsNull() {
             addCriterion("is_visible is null");
             return (Criteria) this;
@@ -915,6 +975,66 @@ public class AssetInfoExample {
             return (Criteria) this;
         }
 
+        public Criteria andMapIdIsNull() {
+            addCriterion("map_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapIdIsNotNull() {
+            addCriterion("map_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapIdEqualTo(Integer value) {
+            addCriterion("map_id =", value, "mapId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapIdNotEqualTo(Integer value) {
+            addCriterion("map_id <>", value, "mapId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapIdGreaterThan(Integer value) {
+            addCriterion("map_id >", value, "mapId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("map_id >=", value, "mapId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapIdLessThan(Integer value) {
+            addCriterion("map_id <", value, "mapId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapIdLessThanOrEqualTo(Integer value) {
+            addCriterion("map_id <=", value, "mapId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapIdIn(List<Integer> values) {
+            addCriterion("map_id in", values, "mapId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapIdNotIn(List<Integer> values) {
+            addCriterion("map_id not in", values, "mapId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapIdBetween(Integer value1, Integer value2) {
+            addCriterion("map_id between", value1, value2, "mapId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("map_id not between", value1, value2, "mapId");
+            return (Criteria) this;
+        }
+
         public Criteria andAssetNumIsNull() {
             addCriterion("asset_num is null");
             return (Criteria) this;
@@ -1042,6 +1162,216 @@ public class AssetInfoExample {
 
         public Criteria andRemarksNotBetween(String value1, String value2) {
             addCriterion("remarks not between", value1, value2, "remarks");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage1IsNull() {
+            addCriterion("image1 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage1IsNotNull() {
+            addCriterion("image1 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage1EqualTo(String value) {
+            addCriterion("image1 =", value, "image1");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage1NotEqualTo(String value) {
+            addCriterion("image1 <>", value, "image1");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage1GreaterThan(String value) {
+            addCriterion("image1 >", value, "image1");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage1GreaterThanOrEqualTo(String value) {
+            addCriterion("image1 >=", value, "image1");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage1LessThan(String value) {
+            addCriterion("image1 <", value, "image1");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage1LessThanOrEqualTo(String value) {
+            addCriterion("image1 <=", value, "image1");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage1Like(String value) {
+            addCriterion("image1 like", value, "image1");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage1NotLike(String value) {
+            addCriterion("image1 not like", value, "image1");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage1In(List<String> values) {
+            addCriterion("image1 in", values, "image1");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage1NotIn(List<String> values) {
+            addCriterion("image1 not in", values, "image1");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage1Between(String value1, String value2) {
+            addCriterion("image1 between", value1, value2, "image1");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage1NotBetween(String value1, String value2) {
+            addCriterion("image1 not between", value1, value2, "image1");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage2IsNull() {
+            addCriterion("image2 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage2IsNotNull() {
+            addCriterion("image2 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage2EqualTo(String value) {
+            addCriterion("image2 =", value, "image2");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage2NotEqualTo(String value) {
+            addCriterion("image2 <>", value, "image2");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage2GreaterThan(String value) {
+            addCriterion("image2 >", value, "image2");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage2GreaterThanOrEqualTo(String value) {
+            addCriterion("image2 >=", value, "image2");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage2LessThan(String value) {
+            addCriterion("image2 <", value, "image2");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage2LessThanOrEqualTo(String value) {
+            addCriterion("image2 <=", value, "image2");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage2Like(String value) {
+            addCriterion("image2 like", value, "image2");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage2NotLike(String value) {
+            addCriterion("image2 not like", value, "image2");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage2In(List<String> values) {
+            addCriterion("image2 in", values, "image2");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage2NotIn(List<String> values) {
+            addCriterion("image2 not in", values, "image2");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage2Between(String value1, String value2) {
+            addCriterion("image2 between", value1, value2, "image2");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage2NotBetween(String value1, String value2) {
+            addCriterion("image2 not between", value1, value2, "image2");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage3IsNull() {
+            addCriterion("image3 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage3IsNotNull() {
+            addCriterion("image3 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage3EqualTo(String value) {
+            addCriterion("image3 =", value, "image3");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage3NotEqualTo(String value) {
+            addCriterion("image3 <>", value, "image3");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage3GreaterThan(String value) {
+            addCriterion("image3 >", value, "image3");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage3GreaterThanOrEqualTo(String value) {
+            addCriterion("image3 >=", value, "image3");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage3LessThan(String value) {
+            addCriterion("image3 <", value, "image3");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage3LessThanOrEqualTo(String value) {
+            addCriterion("image3 <=", value, "image3");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage3Like(String value) {
+            addCriterion("image3 like", value, "image3");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage3NotLike(String value) {
+            addCriterion("image3 not like", value, "image3");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage3In(List<String> values) {
+            addCriterion("image3 in", values, "image3");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage3NotIn(List<String> values) {
+            addCriterion("image3 not in", values, "image3");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage3Between(String value1, String value2) {
+            addCriterion("image3 between", value1, value2, "image3");
+            return (Criteria) this;
+        }
+
+        public Criteria andImage3NotBetween(String value1, String value2) {
+            addCriterion("image3 not between", value1, value2, "image3");
             return (Criteria) this;
         }
 

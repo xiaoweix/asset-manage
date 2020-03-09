@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.assetManage.tusdt.model.AssetInfo" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="asset_name" property="assetName" jdbcType="VARCHAR" />
-    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="type_id" property="typeId" jdbcType="INTEGER" />
     <result column="version" property="version" jdbcType="VARCHAR" />
     <result column="manufacture" property="manufacture" jdbcType="VARCHAR" />
     <result column="price" property="price" jdbcType="BIGINT" />
@@ -12,11 +12,16 @@
     <result column="purchase_date" property="purchaseDate" jdbcType="TIMESTAMP" />
     <result column="life" property="life" jdbcType="INTEGER" />
     <result column="is_lend" property="isLend" jdbcType="INTEGER" />
+    <result column="is_take" property="isTake" jdbcType="INTEGER" />
     <result column="is_visible" property="isVisible" jdbcType="INTEGER" />
     <result column="manage_id" property="manageId" jdbcType="INTEGER" />
     <result column="warehouse_id" property="warehouseId" jdbcType="INTEGER" />
+    <result column="map_id" property="mapId" jdbcType="INTEGER" />
     <result column="asset_num" property="assetNum" jdbcType="INTEGER" />
     <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="image1" property="image1" jdbcType="VARCHAR" />
+    <result column="image2" property="image2" jdbcType="VARCHAR" />
+    <result column="image3" property="image3" jdbcType="VARCHAR" />
     <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -78,8 +83,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, asset_name, type, version, manufacture, price, status, purchase_date, life, is_lend, 
-    is_visible, manage_id, warehouse_id, asset_num, remarks, is_delete
+    id, asset_name, type_id, version, manufacture, price, status, purchase_date, life, 
+    is_lend, is_take, is_visible, manage_id, warehouse_id, map_id, asset_num, remarks, 
+    image1, image2, image3, is_delete
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.assetManage.tusdt.model.AssetInfoExample" >
     select
@@ -112,19 +118,23 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.assetManage.tusdt.model.AssetInfo" >
-    insert into asset_info (id, asset_name, type, 
+  <insert id="insert" parameterType="com.assetManage.tusdt.model.AssetInfo" useGeneratedKeys="true" keyProperty="id">
+    insert into asset_info (id, asset_name, type_id, 
       version, manufacture, price, 
       status, purchase_date, life, 
-      is_lend, is_visible, manage_id, 
-      warehouse_id, asset_num, remarks, 
-      is_delete)
-    values (#{id,jdbcType=INTEGER}, #{assetName,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      is_lend, is_take, is_visible, 
+      manage_id, warehouse_id, map_id, 
+      asset_num, remarks, image1, 
+      image2, image3, is_delete
+      )
+    values (#{id,jdbcType=INTEGER}, #{assetName,jdbcType=VARCHAR}, #{typeId,jdbcType=INTEGER}, 
       #{version,jdbcType=VARCHAR}, #{manufacture,jdbcType=VARCHAR}, #{price,jdbcType=BIGINT}, 
       #{status,jdbcType=INTEGER}, #{purchaseDate,jdbcType=TIMESTAMP}, #{life,jdbcType=INTEGER}, 
-      #{isLend,jdbcType=INTEGER}, #{isVisible,jdbcType=INTEGER}, #{manageId,jdbcType=INTEGER}, 
-      #{warehouseId,jdbcType=INTEGER}, #{assetNum,jdbcType=INTEGER}, #{remarks,jdbcType=VARCHAR}, 
-      #{isDelete,jdbcType=INTEGER})
+      #{isLend,jdbcType=INTEGER}, #{isTake,jdbcType=INTEGER}, #{isVisible,jdbcType=INTEGER}, 
+      #{manageId,jdbcType=INTEGER}, #{warehouseId,jdbcType=INTEGER}, #{mapId,jdbcType=INTEGER}, 
+      #{assetNum,jdbcType=INTEGER}, #{remarks,jdbcType=VARCHAR}, #{image1,jdbcType=VARCHAR}, 
+      #{image2,jdbcType=VARCHAR}, #{image3,jdbcType=VARCHAR}, #{isDelete,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.assetManage.tusdt.model.AssetInfo" >
     insert into asset_info
@@ -135,8 +145,8 @@
       <if test="assetName != null" >
         asset_name,
       </if>
-      <if test="type != null" >
-        type,
+      <if test="typeId != null" >
+        type_id,
       </if>
       <if test="version != null" >
         version,
@@ -159,6 +169,9 @@
       <if test="isLend != null" >
         is_lend,
       </if>
+      <if test="isTake != null" >
+        is_take,
+      </if>
       <if test="isVisible != null" >
         is_visible,
       </if>
@@ -168,11 +181,23 @@
       <if test="warehouseId != null" >
         warehouse_id,
       </if>
+      <if test="mapId != null" >
+        map_id,
+      </if>
       <if test="assetNum != null" >
         asset_num,
       </if>
       <if test="remarks != null" >
         remarks,
+      </if>
+      <if test="image1 != null" >
+        image1,
+      </if>
+      <if test="image2 != null" >
+        image2,
+      </if>
+      <if test="image3 != null" >
+        image3,
       </if>
       <if test="isDelete != null" >
         is_delete,
@@ -185,8 +210,8 @@
       <if test="assetName != null" >
         #{assetName,jdbcType=VARCHAR},
       </if>
-      <if test="type != null" >
-        #{type,jdbcType=INTEGER},
+      <if test="typeId != null" >
+        #{typeId,jdbcType=INTEGER},
       </if>
       <if test="version != null" >
         #{version,jdbcType=VARCHAR},
@@ -209,6 +234,9 @@
       <if test="isLend != null" >
         #{isLend,jdbcType=INTEGER},
       </if>
+      <if test="isTake != null" >
+        #{isTake,jdbcType=INTEGER},
+      </if>
       <if test="isVisible != null" >
         #{isVisible,jdbcType=INTEGER},
       </if>
@@ -218,11 +246,23 @@
       <if test="warehouseId != null" >
         #{warehouseId,jdbcType=INTEGER},
       </if>
+      <if test="mapId != null" >
+        #{mapId,jdbcType=INTEGER},
+      </if>
       <if test="assetNum != null" >
         #{assetNum,jdbcType=INTEGER},
       </if>
       <if test="remarks != null" >
         #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="image1 != null" >
+        #{image1,jdbcType=VARCHAR},
+      </if>
+      <if test="image2 != null" >
+        #{image2,jdbcType=VARCHAR},
+      </if>
+      <if test="image3 != null" >
+        #{image3,jdbcType=VARCHAR},
       </if>
       <if test="isDelete != null" >
         #{isDelete,jdbcType=INTEGER},
@@ -244,8 +284,8 @@
       <if test="record.assetName != null" >
         asset_name = #{record.assetName,jdbcType=VARCHAR},
       </if>
-      <if test="record.type != null" >
-        type = #{record.type,jdbcType=INTEGER},
+      <if test="record.typeId != null" >
+        type_id = #{record.typeId,jdbcType=INTEGER},
       </if>
       <if test="record.version != null" >
         version = #{record.version,jdbcType=VARCHAR},
@@ -268,6 +308,9 @@
       <if test="record.isLend != null" >
         is_lend = #{record.isLend,jdbcType=INTEGER},
       </if>
+      <if test="record.isTake != null" >
+        is_take = #{record.isTake,jdbcType=INTEGER},
+      </if>
       <if test="record.isVisible != null" >
         is_visible = #{record.isVisible,jdbcType=INTEGER},
       </if>
@@ -277,11 +320,23 @@
       <if test="record.warehouseId != null" >
         warehouse_id = #{record.warehouseId,jdbcType=INTEGER},
       </if>
+      <if test="record.mapId != null" >
+        map_id = #{record.mapId,jdbcType=INTEGER},
+      </if>
       <if test="record.assetNum != null" >
         asset_num = #{record.assetNum,jdbcType=INTEGER},
       </if>
       <if test="record.remarks != null" >
         remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.image1 != null" >
+        image1 = #{record.image1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.image2 != null" >
+        image2 = #{record.image2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.image3 != null" >
+        image3 = #{record.image3,jdbcType=VARCHAR},
       </if>
       <if test="record.isDelete != null" >
         is_delete = #{record.isDelete,jdbcType=INTEGER},
@@ -295,7 +350,7 @@
     update asset_info
     set id = #{record.id,jdbcType=INTEGER},
       asset_name = #{record.assetName,jdbcType=VARCHAR},
-      type = #{record.type,jdbcType=INTEGER},
+      type_id = #{record.typeId,jdbcType=INTEGER},
       version = #{record.version,jdbcType=VARCHAR},
       manufacture = #{record.manufacture,jdbcType=VARCHAR},
       price = #{record.price,jdbcType=BIGINT},
@@ -303,11 +358,16 @@
       purchase_date = #{record.purchaseDate,jdbcType=TIMESTAMP},
       life = #{record.life,jdbcType=INTEGER},
       is_lend = #{record.isLend,jdbcType=INTEGER},
+      is_take = #{record.isTake,jdbcType=INTEGER},
       is_visible = #{record.isVisible,jdbcType=INTEGER},
       manage_id = #{record.manageId,jdbcType=INTEGER},
       warehouse_id = #{record.warehouseId,jdbcType=INTEGER},
+      map_id = #{record.mapId,jdbcType=INTEGER},
       asset_num = #{record.assetNum,jdbcType=INTEGER},
       remarks = #{record.remarks,jdbcType=VARCHAR},
+      image1 = #{record.image1,jdbcType=VARCHAR},
+      image2 = #{record.image2,jdbcType=VARCHAR},
+      image3 = #{record.image3,jdbcType=VARCHAR},
       is_delete = #{record.isDelete,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -319,8 +379,8 @@
       <if test="assetName != null" >
         asset_name = #{assetName,jdbcType=VARCHAR},
       </if>
-      <if test="type != null" >
-        type = #{type,jdbcType=INTEGER},
+      <if test="typeId != null" >
+        type_id = #{typeId,jdbcType=INTEGER},
       </if>
       <if test="version != null" >
         version = #{version,jdbcType=VARCHAR},
@@ -343,6 +403,9 @@
       <if test="isLend != null" >
         is_lend = #{isLend,jdbcType=INTEGER},
       </if>
+      <if test="isTake != null" >
+        is_take = #{isTake,jdbcType=INTEGER},
+      </if>
       <if test="isVisible != null" >
         is_visible = #{isVisible,jdbcType=INTEGER},
       </if>
@@ -352,11 +415,23 @@
       <if test="warehouseId != null" >
         warehouse_id = #{warehouseId,jdbcType=INTEGER},
       </if>
+      <if test="mapId != null" >
+        map_id = #{mapId,jdbcType=INTEGER},
+      </if>
       <if test="assetNum != null" >
         asset_num = #{assetNum,jdbcType=INTEGER},
       </if>
       <if test="remarks != null" >
         remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="image1 != null" >
+        image1 = #{image1,jdbcType=VARCHAR},
+      </if>
+      <if test="image2 != null" >
+        image2 = #{image2,jdbcType=VARCHAR},
+      </if>
+      <if test="image3 != null" >
+        image3 = #{image3,jdbcType=VARCHAR},
       </if>
       <if test="isDelete != null" >
         is_delete = #{isDelete,jdbcType=INTEGER},
@@ -367,7 +442,7 @@
   <update id="updateByPrimaryKey" parameterType="com.assetManage.tusdt.model.AssetInfo" >
     update asset_info
     set asset_name = #{assetName,jdbcType=VARCHAR},
-      type = #{type,jdbcType=INTEGER},
+      type_id = #{typeId,jdbcType=INTEGER},
       version = #{version,jdbcType=VARCHAR},
       manufacture = #{manufacture,jdbcType=VARCHAR},
       price = #{price,jdbcType=BIGINT},
@@ -375,11 +450,16 @@
       purchase_date = #{purchaseDate,jdbcType=TIMESTAMP},
       life = #{life,jdbcType=INTEGER},
       is_lend = #{isLend,jdbcType=INTEGER},
+      is_take = #{isTake,jdbcType=INTEGER},
       is_visible = #{isVisible,jdbcType=INTEGER},
       manage_id = #{manageId,jdbcType=INTEGER},
       warehouse_id = #{warehouseId,jdbcType=INTEGER},
+      map_id = #{mapId,jdbcType=INTEGER},
       asset_num = #{assetNum,jdbcType=INTEGER},
       remarks = #{remarks,jdbcType=VARCHAR},
+      image1 = #{image1,jdbcType=VARCHAR},
+      image2 = #{image2,jdbcType=VARCHAR},
+      image3 = #{image3,jdbcType=VARCHAR},
       is_delete = #{isDelete,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>

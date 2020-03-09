@@ -51,6 +51,7 @@ public class UserInfoController {
         return responseData;
     }
 
+
     @ApiOperation(value = "新增一个用户", notes = "增加用户")
     @ApiResponses({@ApiResponse(code = Response.OK, message = "添加成功"),})
     @RequestMapping(value = "/addUser", method = RequestMethod.POST)
@@ -62,3 +63,4 @@ public class UserInfoController {
         return responseData;
     }
 }
+

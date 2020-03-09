@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.assetManage.tusdt.dao.WarehouseMapper" >
-  <resultMap id="BaseResultMap" type="com.assetManage.tusdt.model.Warehouse" >
+<mapper namespace="com.assetManage.tusdt.dao.AssetMapMapper" >
+  <resultMap id="BaseResultMap" type="com.assetManage.tusdt.model.AssetMap" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="name" property="name" jdbcType="INTEGER" />
-    <result column="address" property="address" jdbcType="VARCHAR" />
-    <result column="manage_id" property="manageId" jdbcType="INTEGER" />
+    <result column="map_name" property="mapName" jdbcType="VARCHAR" />
+    <result column="map_x" property="mapX" jdbcType="INTEGER" />
+    <result column="map_y" property="mapY" jdbcType="INTEGER" />
+    <result column="map_length" property="mapLength" jdbcType="INTEGER" />
+    <result column="map_width" property="mapWidth" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
-    <result column="map_id" property="mapId" jdbcType="INTEGER" />
     <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -70,16 +70,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name, address, manage_id, create_time, remarks, map_id, is_delete
+    id, map_name, map_x, map_y, map_length, map_width, create_time, is_delete
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.assetManage.tusdt.model.WarehouseExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.assetManage.tusdt.model.AssetMapExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from warehouse
+    from asset_map
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -90,50 +90,50 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from warehouse
+    from asset_map
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from warehouse
+    delete from asset_map
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.assetManage.tusdt.model.WarehouseExample" >
-    delete from warehouse
+  <delete id="deleteByExample" parameterType="com.assetManage.tusdt.model.AssetMapExample" >
+    delete from asset_map
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.assetManage.tusdt.model.Warehouse" useGeneratedKeys="true" keyProperty="id">
-    insert into warehouse (id, name, address, 
-      manage_id, create_time, remarks, 
-      map_id, is_delete)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, 
-      #{manageId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{remarks,jdbcType=VARCHAR}, 
-      #{mapId,jdbcType=INTEGER}, #{isDelete,jdbcType=INTEGER})
+  <insert id="insert" parameterType="com.assetManage.tusdt.model.AssetMap" useGeneratedKeys="true" keyProperty="id">
+    insert into asset_map (id, map_name, map_x, 
+      map_y, map_length, map_width, 
+      create_time, is_delete)
+    values (#{id,jdbcType=INTEGER}, #{mapName,jdbcType=VARCHAR}, #{mapX,jdbcType=INTEGER}, 
+      #{mapY,jdbcType=INTEGER}, #{mapLength,jdbcType=INTEGER}, #{mapWidth,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.assetManage.tusdt.model.Warehouse" >
-    insert into warehouse
+  <insert id="insertSelective" parameterType="com.assetManage.tusdt.model.AssetMap" >
+    insert into asset_map
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="name != null" >
-        name,
+      <if test="mapName != null" >
+        map_name,
       </if>
-      <if test="address != null" >
-        address,
+      <if test="mapX != null" >
+        map_x,
       </if>
-      <if test="manageId != null" >
-        manage_id,
+      <if test="mapY != null" >
+        map_y,
+      </if>
+      <if test="mapLength != null" >
+        map_length,
+      </if>
+      <if test="mapWidth != null" >
+        map_width,
       </if>
       <if test="createTime != null" >
         create_time,
-      </if>
-      <if test="remarks != null" >
-        remarks,
-      </if>
-      <if test="mapId != null" >
-        map_id,
       </if>
       <if test="isDelete != null" >
         is_delete,
@@ -143,58 +143,58 @@
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="name != null" >
-        #{name,jdbcType=INTEGER},
+      <if test="mapName != null" >
+        #{mapName,jdbcType=VARCHAR},
       </if>
-      <if test="address != null" >
-        #{address,jdbcType=VARCHAR},
+      <if test="mapX != null" >
+        #{mapX,jdbcType=INTEGER},
       </if>
-      <if test="manageId != null" >
-        #{manageId,jdbcType=INTEGER},
+      <if test="mapY != null" >
+        #{mapY,jdbcType=INTEGER},
+      </if>
+      <if test="mapLength != null" >
+        #{mapLength,jdbcType=INTEGER},
+      </if>
+      <if test="mapWidth != null" >
+        #{mapWidth,jdbcType=INTEGER},
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="remarks != null" >
-        #{remarks,jdbcType=VARCHAR},
-      </if>
-      <if test="mapId != null" >
-        #{mapId,jdbcType=INTEGER},
       </if>
       <if test="isDelete != null" >
         #{isDelete,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.assetManage.tusdt.model.WarehouseExample" resultType="java.lang.Integer" >
-    select count(*) from warehouse
+  <select id="countByExample" parameterType="com.assetManage.tusdt.model.AssetMapExample" resultType="java.lang.Integer" >
+    select count(*) from asset_map
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update warehouse
+    update asset_map
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.name != null" >
-        name = #{record.name,jdbcType=INTEGER},
+      <if test="record.mapName != null" >
+        map_name = #{record.mapName,jdbcType=VARCHAR},
       </if>
-      <if test="record.address != null" >
-        address = #{record.address,jdbcType=VARCHAR},
+      <if test="record.mapX != null" >
+        map_x = #{record.mapX,jdbcType=INTEGER},
       </if>
-      <if test="record.manageId != null" >
-        manage_id = #{record.manageId,jdbcType=INTEGER},
+      <if test="record.mapY != null" >
+        map_y = #{record.mapY,jdbcType=INTEGER},
+      </if>
+      <if test="record.mapLength != null" >
+        map_length = #{record.mapLength,jdbcType=INTEGER},
+      </if>
+      <if test="record.mapWidth != null" >
+        map_width = #{record.mapWidth,jdbcType=INTEGER},
       </if>
       <if test="record.createTime != null" >
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.remarks != null" >
-        remarks = #{record.remarks,jdbcType=VARCHAR},
-      </if>
-      <if test="record.mapId != null" >
-        map_id = #{record.mapId,jdbcType=INTEGER},
       </if>
       <if test="record.isDelete != null" >
         is_delete = #{record.isDelete,jdbcType=INTEGER},
@@ -205,39 +205,39 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update warehouse
+    update asset_map
     set id = #{record.id,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=INTEGER},
-      address = #{record.address,jdbcType=VARCHAR},
-      manage_id = #{record.manageId,jdbcType=INTEGER},
+      map_name = #{record.mapName,jdbcType=VARCHAR},
+      map_x = #{record.mapX,jdbcType=INTEGER},
+      map_y = #{record.mapY,jdbcType=INTEGER},
+      map_length = #{record.mapLength,jdbcType=INTEGER},
+      map_width = #{record.mapWidth,jdbcType=INTEGER},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      remarks = #{record.remarks,jdbcType=VARCHAR},
-      map_id = #{record.mapId,jdbcType=INTEGER},
       is_delete = #{record.isDelete,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.assetManage.tusdt.model.Warehouse" >
-    update warehouse
+  <update id="updateByPrimaryKeySelective" parameterType="com.assetManage.tusdt.model.AssetMap" >
+    update asset_map
     <set >
-      <if test="name != null" >
-        name = #{name,jdbcType=INTEGER},
+      <if test="mapName != null" >
+        map_name = #{mapName,jdbcType=VARCHAR},
       </if>
-      <if test="address != null" >
-        address = #{address,jdbcType=VARCHAR},
+      <if test="mapX != null" >
+        map_x = #{mapX,jdbcType=INTEGER},
       </if>
-      <if test="manageId != null" >
-        manage_id = #{manageId,jdbcType=INTEGER},
+      <if test="mapY != null" >
+        map_y = #{mapY,jdbcType=INTEGER},
+      </if>
+      <if test="mapLength != null" >
+        map_length = #{mapLength,jdbcType=INTEGER},
+      </if>
+      <if test="mapWidth != null" >
+        map_width = #{mapWidth,jdbcType=INTEGER},
       </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="remarks != null" >
-        remarks = #{remarks,jdbcType=VARCHAR},
-      </if>
-      <if test="mapId != null" >
-        map_id = #{mapId,jdbcType=INTEGER},
       </if>
       <if test="isDelete != null" >
         is_delete = #{isDelete,jdbcType=INTEGER},
@@ -245,14 +245,14 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.assetManage.tusdt.model.Warehouse" >
-    update warehouse
-    set name = #{name,jdbcType=INTEGER},
-      address = #{address,jdbcType=VARCHAR},
-      manage_id = #{manageId,jdbcType=INTEGER},
+  <update id="updateByPrimaryKey" parameterType="com.assetManage.tusdt.model.AssetMap" >
+    update asset_map
+    set map_name = #{mapName,jdbcType=VARCHAR},
+      map_x = #{mapX,jdbcType=INTEGER},
+      map_y = #{mapY,jdbcType=INTEGER},
+      map_length = #{mapLength,jdbcType=INTEGER},
+      map_width = #{mapWidth,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      remarks = #{remarks,jdbcType=VARCHAR},
-      map_id = #{mapId,jdbcType=INTEGER},
       is_delete = #{isDelete,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>

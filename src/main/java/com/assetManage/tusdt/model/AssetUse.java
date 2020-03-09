@@ -5,19 +5,17 @@ import java.util.Date;
 public class AssetUse {
     private Integer id;
 
-    private Integer type;
-
     private String assetId;
 
     private Integer userid;
 
     private String address;
 
+    private Integer mapId;
+
     private String purpose;
 
     private Date startTime;
-
-    private Date retTime;
 
     private String remarks;
 
@@ -27,14 +25,6 @@ public class AssetUse {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getType() {
-        return type;
-    }
-
-    public void setType(Integer type) {
-        this.type = type;
     }
 
     public String getAssetId() {
@@ -61,6 +51,14 @@ public class AssetUse {
         this.address = address == null ? null : address.trim();
     }
 
+    public Integer getMapId() {
+        return mapId;
+    }
+
+    public void setMapId(Integer mapId) {
+        this.mapId = mapId;
+    }
+
     public String getPurpose() {
         return purpose;
     }
@@ -75,14 +73,6 @@ public class AssetUse {
 
     public void setStartTime(Date startTime) {
         this.startTime = startTime;
-    }
-
-    public Date getRetTime() {
-        return retTime;
-    }
-
-    public void setRetTime(Date retTime) {
-        this.retTime = retTime;
     }
 
     public String getRemarks() {
