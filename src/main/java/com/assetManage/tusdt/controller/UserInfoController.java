@@ -3,6 +3,7 @@ package com.assetManage.tusdt.controller;
 import com.assetManage.tusdt.base.common.ResponseData;
 import com.assetManage.tusdt.base.constants.Response;
 import com.assetManage.tusdt.model.User;
+import com.assetManage.tusdt.model.bo.RegisterUserBO;
 import com.assetManage.tusdt.model.bo.UserListBO;
 import com.assetManage.tusdt.service.UserInfoService;
 import com.assetManage.tusdt.utils.JwtUtils;
@@ -79,5 +80,9 @@ public class UserInfoController {
         responseData = userInfoService.addUser(user);
         return responseData;
     }
+
+
+
+
 }
 
