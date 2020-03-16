@@ -15,6 +15,8 @@ public class Warehouse {
 
     private String remarks;
 
+    private Integer mapId;
+
     private Integer isDelete;
 
     public Integer getId() {
@@ -63,6 +65,14 @@ public class Warehouse {
 
     public void setRemarks(String remarks) {
         this.remarks = remarks == null ? null : remarks.trim();
+    }
+
+    public Integer getMapId() {
+        return mapId;
+    }
+
+    public void setMapId(Integer mapId) {
+        this.mapId = mapId;
     }
 
     public Integer getIsDelete() {

@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class WarehouseExample {
+public class AssetMapExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public WarehouseExample() {
+    public AssetMapExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -165,193 +165,313 @@ public class WarehouseExample {
             return (Criteria) this;
         }
 
-        public Criteria andNameIsNull() {
-            addCriterion("name is null");
+        public Criteria andMapNameIsNull() {
+            addCriterion("map_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andNameIsNotNull() {
-            addCriterion("name is not null");
+        public Criteria andMapNameIsNotNull() {
+            addCriterion("map_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andNameEqualTo(Integer value) {
-            addCriterion("name =", value, "name");
+        public Criteria andMapNameEqualTo(String value) {
+            addCriterion("map_name =", value, "mapName");
             return (Criteria) this;
         }
 
-        public Criteria andNameNotEqualTo(Integer value) {
-            addCriterion("name <>", value, "name");
+        public Criteria andMapNameNotEqualTo(String value) {
+            addCriterion("map_name <>", value, "mapName");
             return (Criteria) this;
         }
 
-        public Criteria andNameGreaterThan(Integer value) {
-            addCriterion("name >", value, "name");
+        public Criteria andMapNameGreaterThan(String value) {
+            addCriterion("map_name >", value, "mapName");
             return (Criteria) this;
         }
 
-        public Criteria andNameGreaterThanOrEqualTo(Integer value) {
-            addCriterion("name >=", value, "name");
+        public Criteria andMapNameGreaterThanOrEqualTo(String value) {
+            addCriterion("map_name >=", value, "mapName");
             return (Criteria) this;
         }
 
-        public Criteria andNameLessThan(Integer value) {
-            addCriterion("name <", value, "name");
+        public Criteria andMapNameLessThan(String value) {
+            addCriterion("map_name <", value, "mapName");
             return (Criteria) this;
         }
 
-        public Criteria andNameLessThanOrEqualTo(Integer value) {
-            addCriterion("name <=", value, "name");
+        public Criteria andMapNameLessThanOrEqualTo(String value) {
+            addCriterion("map_name <=", value, "mapName");
             return (Criteria) this;
         }
 
-        public Criteria andNameIn(List<Integer> values) {
-            addCriterion("name in", values, "name");
+        public Criteria andMapNameLike(String value) {
+            addCriterion("map_name like", value, "mapName");
             return (Criteria) this;
         }
 
-        public Criteria andNameNotIn(List<Integer> values) {
-            addCriterion("name not in", values, "name");
+        public Criteria andMapNameNotLike(String value) {
+            addCriterion("map_name not like", value, "mapName");
             return (Criteria) this;
         }
 
-        public Criteria andNameBetween(Integer value1, Integer value2) {
-            addCriterion("name between", value1, value2, "name");
+        public Criteria andMapNameIn(List<String> values) {
+            addCriterion("map_name in", values, "mapName");
             return (Criteria) this;
         }
 
-        public Criteria andNameNotBetween(Integer value1, Integer value2) {
-            addCriterion("name not between", value1, value2, "name");
+        public Criteria andMapNameNotIn(List<String> values) {
+            addCriterion("map_name not in", values, "mapName");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIsNull() {
-            addCriterion("address is null");
+        public Criteria andMapNameBetween(String value1, String value2) {
+            addCriterion("map_name between", value1, value2, "mapName");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIsNotNull() {
-            addCriterion("address is not null");
+        public Criteria andMapNameNotBetween(String value1, String value2) {
+            addCriterion("map_name not between", value1, value2, "mapName");
             return (Criteria) this;
         }
 
-        public Criteria andAddressEqualTo(String value) {
-            addCriterion("address =", value, "address");
+        public Criteria andMapXIsNull() {
+            addCriterion("map_x is null");
             return (Criteria) this;
         }
 
-        public Criteria andAddressNotEqualTo(String value) {
-            addCriterion("address <>", value, "address");
+        public Criteria andMapXIsNotNull() {
+            addCriterion("map_x is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAddressGreaterThan(String value) {
-            addCriterion("address >", value, "address");
+        public Criteria andMapXEqualTo(Integer value) {
+            addCriterion("map_x =", value, "mapX");
             return (Criteria) this;
         }
 
-        public Criteria andAddressGreaterThanOrEqualTo(String value) {
-            addCriterion("address >=", value, "address");
+        public Criteria andMapXNotEqualTo(Integer value) {
+            addCriterion("map_x <>", value, "mapX");
             return (Criteria) this;
         }
 
-        public Criteria andAddressLessThan(String value) {
-            addCriterion("address <", value, "address");
+        public Criteria andMapXGreaterThan(Integer value) {
+            addCriterion("map_x >", value, "mapX");
             return (Criteria) this;
         }
 
-        public Criteria andAddressLessThanOrEqualTo(String value) {
-            addCriterion("address <=", value, "address");
+        public Criteria andMapXGreaterThanOrEqualTo(Integer value) {
+            addCriterion("map_x >=", value, "mapX");
             return (Criteria) this;
         }
 
-        public Criteria andAddressLike(String value) {
-            addCriterion("address like", value, "address");
+        public Criteria andMapXLessThan(Integer value) {
+            addCriterion("map_x <", value, "mapX");
             return (Criteria) this;
         }
 
-        public Criteria andAddressNotLike(String value) {
-            addCriterion("address not like", value, "address");
+        public Criteria andMapXLessThanOrEqualTo(Integer value) {
+            addCriterion("map_x <=", value, "mapX");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIn(List<String> values) {
-            addCriterion("address in", values, "address");
+        public Criteria andMapXIn(List<Integer> values) {
+            addCriterion("map_x in", values, "mapX");
             return (Criteria) this;
         }
 
-        public Criteria andAddressNotIn(List<String> values) {
-            addCriterion("address not in", values, "address");
+        public Criteria andMapXNotIn(List<Integer> values) {
+            addCriterion("map_x not in", values, "mapX");
             return (Criteria) this;
         }
 
-        public Criteria andAddressBetween(String value1, String value2) {
-            addCriterion("address between", value1, value2, "address");
+        public Criteria andMapXBetween(Integer value1, Integer value2) {
+            addCriterion("map_x between", value1, value2, "mapX");
             return (Criteria) this;
         }
 
-        public Criteria andAddressNotBetween(String value1, String value2) {
-            addCriterion("address not between", value1, value2, "address");
+        public Criteria andMapXNotBetween(Integer value1, Integer value2) {
+            addCriterion("map_x not between", value1, value2, "mapX");
             return (Criteria) this;
         }
 
-        public Criteria andManageIdIsNull() {
-            addCriterion("manage_id is null");
+        public Criteria andMapYIsNull() {
+            addCriterion("map_y is null");
             return (Criteria) this;
         }
 
-        public Criteria andManageIdIsNotNull() {
-            addCriterion("manage_id is not null");
+        public Criteria andMapYIsNotNull() {
+            addCriterion("map_y is not null");
             return (Criteria) this;
         }
 
-        public Criteria andManageIdEqualTo(Integer value) {
-            addCriterion("manage_id =", value, "manageId");
+        public Criteria andMapYEqualTo(Integer value) {
+            addCriterion("map_y =", value, "mapY");
             return (Criteria) this;
         }
 
-        public Criteria andManageIdNotEqualTo(Integer value) {
-            addCriterion("manage_id <>", value, "manageId");
+        public Criteria andMapYNotEqualTo(Integer value) {
+            addCriterion("map_y <>", value, "mapY");
             return (Criteria) this;
         }
 
-        public Criteria andManageIdGreaterThan(Integer value) {
-            addCriterion("manage_id >", value, "manageId");
+        public Criteria andMapYGreaterThan(Integer value) {
+            addCriterion("map_y >", value, "mapY");
             return (Criteria) this;
         }
 
-        public Criteria andManageIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("manage_id >=", value, "manageId");
+        public Criteria andMapYGreaterThanOrEqualTo(Integer value) {
+            addCriterion("map_y >=", value, "mapY");
             return (Criteria) this;
         }
 
-        public Criteria andManageIdLessThan(Integer value) {
-            addCriterion("manage_id <", value, "manageId");
+        public Criteria andMapYLessThan(Integer value) {
+            addCriterion("map_y <", value, "mapY");
             return (Criteria) this;
         }
 
-        public Criteria andManageIdLessThanOrEqualTo(Integer value) {
-            addCriterion("manage_id <=", value, "manageId");
+        public Criteria andMapYLessThanOrEqualTo(Integer value) {
+            addCriterion("map_y <=", value, "mapY");
             return (Criteria) this;
         }
 
-        public Criteria andManageIdIn(List<Integer> values) {
-            addCriterion("manage_id in", values, "manageId");
+        public Criteria andMapYIn(List<Integer> values) {
+            addCriterion("map_y in", values, "mapY");
             return (Criteria) this;
         }
 
-        public Criteria andManageIdNotIn(List<Integer> values) {
-            addCriterion("manage_id not in", values, "manageId");
+        public Criteria andMapYNotIn(List<Integer> values) {
+            addCriterion("map_y not in", values, "mapY");
             return (Criteria) this;
         }
 
-        public Criteria andManageIdBetween(Integer value1, Integer value2) {
-            addCriterion("manage_id between", value1, value2, "manageId");
+        public Criteria andMapYBetween(Integer value1, Integer value2) {
+            addCriterion("map_y between", value1, value2, "mapY");
             return (Criteria) this;
         }
 
-        public Criteria andManageIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("manage_id not between", value1, value2, "manageId");
+        public Criteria andMapYNotBetween(Integer value1, Integer value2) {
+            addCriterion("map_y not between", value1, value2, "mapY");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapLengthIsNull() {
+            addCriterion("map_length is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapLengthIsNotNull() {
+            addCriterion("map_length is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapLengthEqualTo(Integer value) {
+            addCriterion("map_length =", value, "mapLength");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapLengthNotEqualTo(Integer value) {
+            addCriterion("map_length <>", value, "mapLength");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapLengthGreaterThan(Integer value) {
+            addCriterion("map_length >", value, "mapLength");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapLengthGreaterThanOrEqualTo(Integer value) {
+            addCriterion("map_length >=", value, "mapLength");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapLengthLessThan(Integer value) {
+            addCriterion("map_length <", value, "mapLength");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapLengthLessThanOrEqualTo(Integer value) {
+            addCriterion("map_length <=", value, "mapLength");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapLengthIn(List<Integer> values) {
+            addCriterion("map_length in", values, "mapLength");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapLengthNotIn(List<Integer> values) {
+            addCriterion("map_length not in", values, "mapLength");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapLengthBetween(Integer value1, Integer value2) {
+            addCriterion("map_length between", value1, value2, "mapLength");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapLengthNotBetween(Integer value1, Integer value2) {
+            addCriterion("map_length not between", value1, value2, "mapLength");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapWidthIsNull() {
+            addCriterion("map_width is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapWidthIsNotNull() {
+            addCriterion("map_width is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapWidthEqualTo(Integer value) {
+            addCriterion("map_width =", value, "mapWidth");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapWidthNotEqualTo(Integer value) {
+            addCriterion("map_width <>", value, "mapWidth");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapWidthGreaterThan(Integer value) {
+            addCriterion("map_width >", value, "mapWidth");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapWidthGreaterThanOrEqualTo(Integer value) {
+            addCriterion("map_width >=", value, "mapWidth");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapWidthLessThan(Integer value) {
+            addCriterion("map_width <", value, "mapWidth");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapWidthLessThanOrEqualTo(Integer value) {
+            addCriterion("map_width <=", value, "mapWidth");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapWidthIn(List<Integer> values) {
+            addCriterion("map_width in", values, "mapWidth");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapWidthNotIn(List<Integer> values) {
+            addCriterion("map_width not in", values, "mapWidth");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapWidthBetween(Integer value1, Integer value2) {
+            addCriterion("map_width between", value1, value2, "mapWidth");
+            return (Criteria) this;
+        }
+
+        public Criteria andMapWidthNotBetween(Integer value1, Integer value2) {
+            addCriterion("map_width not between", value1, value2, "mapWidth");
             return (Criteria) this;
         }
 
@@ -412,136 +532,6 @@ public class WarehouseExample {
 
         public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
             addCriterion("create_time not between", value1, value2, "createTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andRemarksIsNull() {
-            addCriterion("remarks is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andRemarksIsNotNull() {
-            addCriterion("remarks is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andRemarksEqualTo(String value) {
-            addCriterion("remarks =", value, "remarks");
-            return (Criteria) this;
-        }
-
-        public Criteria andRemarksNotEqualTo(String value) {
-            addCriterion("remarks <>", value, "remarks");
-            return (Criteria) this;
-        }
-
-        public Criteria andRemarksGreaterThan(String value) {
-            addCriterion("remarks >", value, "remarks");
-            return (Criteria) this;
-        }
-
-        public Criteria andRemarksGreaterThanOrEqualTo(String value) {
-            addCriterion("remarks >=", value, "remarks");
-            return (Criteria) this;
-        }
-
-        public Criteria andRemarksLessThan(String value) {
-            addCriterion("remarks <", value, "remarks");
-            return (Criteria) this;
-        }
-
-        public Criteria andRemarksLessThanOrEqualTo(String value) {
-            addCriterion("remarks <=", value, "remarks");
-            return (Criteria) this;
-        }
-
-        public Criteria andRemarksLike(String value) {
-            addCriterion("remarks like", value, "remarks");
-            return (Criteria) this;
-        }
-
-        public Criteria andRemarksNotLike(String value) {
-            addCriterion("remarks not like", value, "remarks");
-            return (Criteria) this;
-        }
-
-        public Criteria andRemarksIn(List<String> values) {
-            addCriterion("remarks in", values, "remarks");
-            return (Criteria) this;
-        }
-
-        public Criteria andRemarksNotIn(List<String> values) {
-            addCriterion("remarks not in", values, "remarks");
-            return (Criteria) this;
-        }
-
-        public Criteria andRemarksBetween(String value1, String value2) {
-            addCriterion("remarks between", value1, value2, "remarks");
-            return (Criteria) this;
-        }
-
-        public Criteria andRemarksNotBetween(String value1, String value2) {
-            addCriterion("remarks not between", value1, value2, "remarks");
-            return (Criteria) this;
-        }
-
-        public Criteria andMapIdIsNull() {
-            addCriterion("map_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andMapIdIsNotNull() {
-            addCriterion("map_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andMapIdEqualTo(Integer value) {
-            addCriterion("map_id =", value, "mapId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMapIdNotEqualTo(Integer value) {
-            addCriterion("map_id <>", value, "mapId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMapIdGreaterThan(Integer value) {
-            addCriterion("map_id >", value, "mapId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMapIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("map_id >=", value, "mapId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMapIdLessThan(Integer value) {
-            addCriterion("map_id <", value, "mapId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMapIdLessThanOrEqualTo(Integer value) {
-            addCriterion("map_id <=", value, "mapId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMapIdIn(List<Integer> values) {
-            addCriterion("map_id in", values, "mapId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMapIdNotIn(List<Integer> values) {
-            addCriterion("map_id not in", values, "mapId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMapIdBetween(Integer value1, Integer value2) {
-            addCriterion("map_id between", value1, value2, "mapId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMapIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("map_id not between", value1, value2, "mapId");
             return (Criteria) this;
         }
 

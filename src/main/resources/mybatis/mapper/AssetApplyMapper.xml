@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.assetManage.tusdt.model.AssetApply" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="number" property="number" jdbcType="INTEGER" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="asset_id" property="assetId" jdbcType="INTEGER" />
     <result column="address" property="address" jdbcType="VARCHAR" />
@@ -12,6 +13,10 @@
     <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
     <result column="urgency" property="urgency" jdbcType="INTEGER" />
     <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="result" property="result" jdbcType="INTEGER" />
+    <result column="image1" property="image1" jdbcType="VARCHAR" />
+    <result column="image2" property="image2" jdbcType="VARCHAR" />
+    <result column="image3" property="image3" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -72,7 +77,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, type, user_id, asset_id, address, purpose, start_time, end_time, urgency, remarks
+    id, type, number, user_id, asset_id, address, purpose, start_time, end_time, urgency, 
+    remarks, result, image1, image2, image3
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.assetManage.tusdt.model.AssetApplyExample" >
     select
@@ -105,15 +111,19 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.assetManage.tusdt.model.AssetApply" >
-    insert into asset_apply (id, type, user_id, 
-      asset_id, address, purpose, 
-      start_time, end_time, urgency, 
-      remarks)
-    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
-      #{assetId,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{purpose,jdbcType=VARCHAR}, 
-      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{urgency,jdbcType=INTEGER}, 
-      #{remarks,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.assetManage.tusdt.model.AssetApply" useGeneratedKeys="true" keyProperty="id">
+    insert into asset_apply (id, type, number, 
+      user_id, asset_id, address, 
+      purpose, start_time, end_time, 
+      urgency, remarks, result, 
+      image1, image2, image3
+      )
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{number,jdbcType=INTEGER}, 
+      #{userId,jdbcType=INTEGER}, #{assetId,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, 
+      #{purpose,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{urgency,jdbcType=INTEGER}, #{remarks,jdbcType=VARCHAR}, #{result,jdbcType=INTEGER}, 
+      #{image1,jdbcType=VARCHAR}, #{image2,jdbcType=VARCHAR}, #{image3,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.assetManage.tusdt.model.AssetApply" >
     insert into asset_apply
@@ -123,6 +133,9 @@
       </if>
       <if test="type != null" >
         type,
+      </if>
+      <if test="number != null" >
+        number,
       </if>
       <if test="userId != null" >
         user_id,
@@ -148,6 +161,18 @@
       <if test="remarks != null" >
         remarks,
       </if>
+      <if test="result != null" >
+        result,
+      </if>
+      <if test="image1 != null" >
+        image1,
+      </if>
+      <if test="image2 != null" >
+        image2,
+      </if>
+      <if test="image3 != null" >
+        image3,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -155,6 +180,9 @@
       </if>
       <if test="type != null" >
         #{type,jdbcType=INTEGER},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=INTEGER},
       </if>
       <if test="userId != null" >
         #{userId,jdbcType=INTEGER},
@@ -180,6 +208,18 @@
       <if test="remarks != null" >
         #{remarks,jdbcType=VARCHAR},
       </if>
+      <if test="result != null" >
+        #{result,jdbcType=INTEGER},
+      </if>
+      <if test="image1 != null" >
+        #{image1,jdbcType=VARCHAR},
+      </if>
+      <if test="image2 != null" >
+        #{image2,jdbcType=VARCHAR},
+      </if>
+      <if test="image3 != null" >
+        #{image3,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.assetManage.tusdt.model.AssetApplyExample" resultType="java.lang.Integer" >
@@ -196,6 +236,9 @@
       </if>
       <if test="record.type != null" >
         type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.number != null" >
+        number = #{record.number,jdbcType=INTEGER},
       </if>
       <if test="record.userId != null" >
         user_id = #{record.userId,jdbcType=INTEGER},
@@ -221,6 +264,18 @@
       <if test="record.remarks != null" >
         remarks = #{record.remarks,jdbcType=VARCHAR},
       </if>
+      <if test="record.result != null" >
+        result = #{record.result,jdbcType=INTEGER},
+      </if>
+      <if test="record.image1 != null" >
+        image1 = #{record.image1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.image2 != null" >
+        image2 = #{record.image2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.image3 != null" >
+        image3 = #{record.image3,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -230,6 +285,7 @@
     update asset_apply
     set id = #{record.id,jdbcType=INTEGER},
       type = #{record.type,jdbcType=INTEGER},
+      number = #{record.number,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=INTEGER},
       asset_id = #{record.assetId,jdbcType=INTEGER},
       address = #{record.address,jdbcType=VARCHAR},
@@ -237,7 +293,11 @@
       start_time = #{record.startTime,jdbcType=TIMESTAMP},
       end_time = #{record.endTime,jdbcType=TIMESTAMP},
       urgency = #{record.urgency,jdbcType=INTEGER},
-      remarks = #{record.remarks,jdbcType=VARCHAR}
+      remarks = #{record.remarks,jdbcType=VARCHAR},
+      result = #{record.result,jdbcType=INTEGER},
+      image1 = #{record.image1,jdbcType=VARCHAR},
+      image2 = #{record.image2,jdbcType=VARCHAR},
+      image3 = #{record.image3,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -247,6 +307,9 @@
     <set >
       <if test="type != null" >
         type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=INTEGER},
       </if>
       <if test="userId != null" >
         user_id = #{userId,jdbcType=INTEGER},
@@ -272,12 +335,25 @@
       <if test="remarks != null" >
         remarks = #{remarks,jdbcType=VARCHAR},
       </if>
+      <if test="result != null" >
+        result = #{result,jdbcType=INTEGER},
+      </if>
+      <if test="image1 != null" >
+        image1 = #{image1,jdbcType=VARCHAR},
+      </if>
+      <if test="image2 != null" >
+        image2 = #{image2,jdbcType=VARCHAR},
+      </if>
+      <if test="image3 != null" >
+        image3 = #{image3,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.assetManage.tusdt.model.AssetApply" >
     update asset_apply
     set type = #{type,jdbcType=INTEGER},
+      number = #{number,jdbcType=INTEGER},
       user_id = #{userId,jdbcType=INTEGER},
       asset_id = #{assetId,jdbcType=INTEGER},
       address = #{address,jdbcType=VARCHAR},
@@ -285,7 +361,11 @@
       start_time = #{startTime,jdbcType=TIMESTAMP},
       end_time = #{endTime,jdbcType=TIMESTAMP},
       urgency = #{urgency,jdbcType=INTEGER},
-      remarks = #{remarks,jdbcType=VARCHAR}
+      remarks = #{remarks,jdbcType=VARCHAR},
+      result = #{result,jdbcType=INTEGER},
+      image1 = #{image1,jdbcType=VARCHAR},
+      image2 = #{image2,jdbcType=VARCHAR},
+      image3 = #{image3,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

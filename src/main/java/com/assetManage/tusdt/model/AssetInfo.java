@@ -7,7 +7,7 @@ public class AssetInfo {
 
     private String assetName;
 
-    private Integer type;
+    private Integer typeId;
 
     private String version;
 
@@ -23,15 +23,25 @@ public class AssetInfo {
 
     private Integer isLend;
 
+    private Integer isTake;
+
     private Integer isVisible;
 
     private Integer manageId;
 
     private Integer warehouseId;
 
+    private Integer mapId;
+
     private Integer assetNum;
 
     private String remarks;
+
+    private String image1;
+
+    private String image2;
+
+    private String image3;
 
     private Integer isDelete;
 
@@ -51,12 +61,12 @@ public class AssetInfo {
         this.assetName = assetName == null ? null : assetName.trim();
     }
 
-    public Integer getType() {
-        return type;
+    public Integer getTypeId() {
+        return typeId;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
+    public void setTypeId(Integer typeId) {
+        this.typeId = typeId;
     }
 
     public String getVersion() {
@@ -115,6 +125,14 @@ public class AssetInfo {
         this.isLend = isLend;
     }
 
+    public Integer getIsTake() {
+        return isTake;
+    }
+
+    public void setIsTake(Integer isTake) {
+        this.isTake = isTake;
+    }
+
     public Integer getIsVisible() {
         return isVisible;
     }
@@ -139,6 +157,14 @@ public class AssetInfo {
         this.warehouseId = warehouseId;
     }
 
+    public Integer getMapId() {
+        return mapId;
+    }
+
+    public void setMapId(Integer mapId) {
+        this.mapId = mapId;
+    }
+
     public Integer getAssetNum() {
         return assetNum;
     }
@@ -153,6 +179,30 @@ public class AssetInfo {
 
     public void setRemarks(String remarks) {
         this.remarks = remarks == null ? null : remarks.trim();
+    }
+
+    public String getImage1() {
+        return image1;
+    }
+
+    public void setImage1(String image1) {
+        this.image1 = image1 == null ? null : image1.trim();
+    }
+
+    public String getImage2() {
+        return image2;
+    }
+
+    public void setImage2(String image2) {
+        this.image2 = image2 == null ? null : image2.trim();
+    }
+
+    public String getImage3() {
+        return image3;
+    }
+
+    public void setImage3(String image3) {
+        this.image3 = image3 == null ? null : image3.trim();
     }
 
     public Integer getIsDelete() {

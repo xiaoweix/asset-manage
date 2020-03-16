@@ -104,7 +104,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.assetManage.tusdt.model.User" >
+  <insert id="insert" parameterType="com.assetManage.tusdt.model.User" useGeneratedKeys="true" keyProperty="id">
     insert into user (id, user_name, password, 
       signature, telephone, email, 
       job_level, status, is_delete

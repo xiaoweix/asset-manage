@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.assetManage.tusdt.model.User;
 import com.assetManage.tusdt.model.UserExample;
+import com.assetManage.tusdt.model.bo.UserListBO;
 import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
@@ -29,5 +30,5 @@ public interface UserMapper {
 
     int updateByPrimaryKey(User record);
 
-    List<User> selectByUserName(@Param("userName") String userName);
+    List<UserListBO> selectByUserName(@Param("userName") String userName);
 }

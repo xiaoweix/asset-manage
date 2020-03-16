@@ -99,7 +99,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.assetManage.tusdt.model.OperLog" >
+  <insert id="insert" parameterType="com.assetManage.tusdt.model.OperLog" useGeneratedKeys="true" keyProperty="id">
     insert into oper_log (id, user_id, remarks, 
       start_time)
     values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{remarks,jdbcType=VARCHAR}, 

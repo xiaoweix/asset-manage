@@ -3,6 +3,9 @@ package com.assetManage.tusdt.service.impl;
 import com.assetManage.tusdt.base.common.ResponseData;
 import com.assetManage.tusdt.dao.UserMapper;
 import com.assetManage.tusdt.model.User;
+import com.assetManage.tusdt.model.bo.RegisterUserBO;
+import com.assetManage.tusdt.model.bo.UserDetailBO;
+import com.assetManage.tusdt.model.bo.UserListBO;
 import com.assetManage.tusdt.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +26,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 
     @Override
-    public List<User> getUserList(String userName) {
+    public List<UserListBO> getUserList(String userName) {
         return userMapper.selectByUserName(userName);
     }
 
@@ -32,10 +35,45 @@ public class UserInfoServiceImpl implements UserInfoService {
         ResponseData<String> responseData = new ResponseData<>();
         Integer result = userMapper.insert(user);
         if (result == 1) {
-            responseData.setOK("插入成功");
+            responseData.setOK("添加成功");
         } else {
-            responseData.setError("插入失败");
+            responseData.setError("添加失败");
         }
         return responseData;
+    }
+
+    @Override
+    public ResponseData<UserDetailBO> getPersonnelDetail(Integer id) {
+        return null;
+    }
+
+    @Override
+    public ResponseData<User> getUserDetail(Integer id) {
+        return null;
+    }
+
+    @Override
+    public ResponseData<String> deleteUser(Integer id) {
+        return null;
+    }
+
+    @Override
+    public ResponseData<String> changeUserStatus(Integer id, Integer status) {
+        return null;
+    }
+
+    @Override
+    public ResponseData<String> modifyUserInfo(User user) {
+        return null;
+    }
+
+    @Override
+    public ResponseData<String> registerUser(RegisterUserBO registerUserBO) {
+        return null;
+    }
+
+    @Override
+    public ResponseData<String> changeUserInfoByMyself(RegisterUserBO registerUserBO) {
+        return null;
     }
 }
