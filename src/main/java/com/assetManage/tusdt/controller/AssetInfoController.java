@@ -51,16 +51,31 @@ public class AssetInfoController {
                                                 @RequestParam(name = "pageSize", required = false, defaultValue = "20") Integer pageSize,
                                                 @RequestParam(value = "assetName",required = false) String assetName,
                                                 @RequestParam(value = "assetId",required = false) Integer assetId,
-                                                @RequestParam(value = "repositoryName",required = false) String repositoryName,
+                                                @RequestParam(value = "warehouseName",required = false) String warehouseName,
                                                 @RequestParam(value = "status",required = false) Integer status
                                                 ) {
 
         ResponseData<Pagination<AssetListBO>> responseData = new ResponseData<>();
-        Pagination<AssetListBO> assetList = assetInfoService.getAssetList(currPage,pageSize,assetId,assetName,repositoryName,status);
+        Pagination<AssetListBO> assetList = assetInfoService.getAssetList(currPage,pageSize,assetId,assetName,warehouseName,status);
         if(assetList == null ) {
             responseData.setError("获取失败");
         }
         responseData.set("获取成功",assetList);
+        return responseData;
+    }
+
+    @ApiOperation(value = "获取资源详情", notes = "参数name可以模糊查询")
+    @ApiResponses({@ApiResponse(code = Response.OK, message = "查询成功"),})
+    @ApiImplicitParams(
+            value = {
+                    @ApiImplicitParam(paramType = "header", name = "token", dataType = "String", required = true, value = "token"),
+            }
+    )
+    @RequestMapping(value = "/assetDetail", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseData<AssetInfo> assetDetail(@RequestParam(name = "id", required = true, defaultValue = "1") Integer id) {
+
+        ResponseData<AssetInfo> responseData = assetInfoService.getAssetInfoDetail(id);
         return responseData;
     }
 

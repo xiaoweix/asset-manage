@@ -2,9 +2,11 @@ package com.assetManage.tusdt.service.impl;
 
 import com.assetManage.tusdt.base.common.Pagination;
 import com.assetManage.tusdt.base.common.ResponseData;
+import com.assetManage.tusdt.constants.CommonConstant;
 import com.assetManage.tusdt.dao.AssetInfoMapper;
 import com.assetManage.tusdt.model.AssetApply;
 import com.assetManage.tusdt.model.AssetInfo;
+import com.assetManage.tusdt.model.AssetType;
 import com.assetManage.tusdt.model.bo.AssetListBO;
 import com.assetManage.tusdt.model.bo.AssetUseHistoryBO;
 import com.assetManage.tusdt.service.AssetInfoService;
@@ -28,6 +30,8 @@ public class AssetInfoServiceImpl implements AssetInfoService {
     @Override
     public ResponseData<String> addAsset(AssetInfo assetInfo) {
         ResponseData<String> responseData = new ResponseData<>();
+        assetInfo.setIsDelete(CommonConstant.DELETED_NO);
+
         Integer result = assetInfoMapper.insert(assetInfo);
         if (result == 1) {
             responseData.setOK("插入成功");
@@ -53,6 +57,18 @@ public class AssetInfoServiceImpl implements AssetInfoService {
     @Override
     public Pagination<AssetUseHistoryBO> getAssetHistory(Integer currPage, Integer pageSize, Integer assetId, String assetName, String userName, Integer type) {
         return null;
+    }
+
+    @Override
+    public ResponseData<AssetInfo> getAssetInfoDetail(Integer id) {
+        ResponseData<AssetInfo> responseData = new ResponseData<>();
+        AssetInfo assetInfo = assetInfoMapper.selectByPrimaryKey(id);
+        if(assetInfo != null) {
+            responseData.setOK("获取成功", assetInfo);
+        } else {
+            responseData.setError("获取失败");
+        }
+        return responseData;
     }
 
 

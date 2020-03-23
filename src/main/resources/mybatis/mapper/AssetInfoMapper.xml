@@ -464,7 +464,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectAssetList" resultType="com.assetManage.tusdt.model.bo.AssetListBO">
-    select id, asset_name, version, status, is_lend, is_take, is_visible, w.name from asset_info ai, warehouse w
+    select ai.id, asset_name, version, status, is_lend, is_take, is_visible, w.name from asset_info ai, warehouse w
     where ai.warehouse_id = w.id
     <if test="assetId != null" >
       and ai.id = #{assetId,jdbcType=INTEGER}
@@ -475,7 +475,7 @@
     <if test="assetName != null">
       AND j.asset_name like CONCAT(CONCAT('%',#{assetName}),'%')
     </if>
-    <if test="repositoryName != null">
+    <if test="address != null">
       AND w.name like CONCAT(CONCAT('%',#{repositoryName}),'%')
     </if>
     <if test="isVisible != null">

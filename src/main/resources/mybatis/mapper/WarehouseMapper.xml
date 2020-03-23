@@ -3,7 +3,7 @@
 <mapper namespace="com.assetManage.tusdt.dao.WarehouseMapper" >
   <resultMap id="BaseResultMap" type="com.assetManage.tusdt.model.Warehouse" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="name" property="name" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="manage_id" property="manageId" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
@@ -107,7 +107,7 @@
     insert into warehouse (id, name, address, 
       manage_id, create_time, remarks, 
       map_id, is_delete)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},
       #{manageId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{remarks,jdbcType=VARCHAR}, 
       #{mapId,jdbcType=INTEGER}, #{isDelete,jdbcType=INTEGER})
   </insert>
@@ -144,7 +144,7 @@
         #{id,jdbcType=INTEGER},
       </if>
       <if test="name != null" >
-        #{name,jdbcType=INTEGER},
+        #{name,jdbcType=VARCHAR},
       </if>
       <if test="address != null" >
         #{address,jdbcType=VARCHAR},
@@ -179,7 +179,7 @@
         id = #{record.id,jdbcType=INTEGER},
       </if>
       <if test="record.name != null" >
-        name = #{record.name,jdbcType=INTEGER},
+        name = #{record.name,jdbcType=VARCHAR},
       </if>
       <if test="record.address != null" >
         address = #{record.address,jdbcType=VARCHAR},
@@ -207,7 +207,7 @@
   <update id="updateByExample" parameterType="map" >
     update warehouse
     set id = #{record.id,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
       address = #{record.address,jdbcType=VARCHAR},
       manage_id = #{record.manageId,jdbcType=INTEGER},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -222,7 +222,7 @@
     update warehouse
     <set >
       <if test="name != null" >
-        name = #{name,jdbcType=INTEGER},
+        name = #{name,jdbcType=VARCHAR},
       </if>
       <if test="address != null" >
         address = #{address,jdbcType=VARCHAR},
@@ -247,7 +247,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.assetManage.tusdt.model.Warehouse" >
     update warehouse
-    set name = #{name,jdbcType=INTEGER},
+    set name = #{name,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
       manage_id = #{manageId,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -256,4 +256,21 @@
       is_delete = #{isDelete,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="warehouseList" resultType="com.assetManage.tusdt.model.bo.WarehouseBO">
+    select w.id id, w.name name, w.address address, w.create_time createTime ,count(1) assetNum from warehouse w, asset_info ai
+    where 1>0
+    and w.is_delete = 0
+    and ai.is_delete = 0
+    and ai.warehouse_id = w.id
+    <if test="warehouseId != null" >
+      and w.id = #{warehouseId,jdbcType=INTEGER}
+    </if>
+    <if test="warehouseName != null">
+      AND w.name like CONCAT(CONCAT('%',#{warehouseName}),'%')
+    </if>
+    <if test="address != null">
+      AND w.address like CONCAT(CONCAT('%',#{address}),'%')
+    </if>
+    GROUP BY w.id
+  </select>
 </mapper>

@@ -5,7 +5,7 @@ import java.util.Date;
 public class Warehouse {
     private Integer id;
 
-    private Integer name;
+    private String name;
 
     private String address;
 
@@ -27,11 +27,11 @@ public class Warehouse {
         this.id = id;
     }
 
-    public Integer getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(Integer name) {
+    public void setName(String name) {
         this.name = name;
     }
 

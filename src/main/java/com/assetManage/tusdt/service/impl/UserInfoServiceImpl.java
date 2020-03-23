@@ -76,4 +76,9 @@ public class UserInfoServiceImpl implements UserInfoService {
     public ResponseData<String> changeUserInfoByMyself(RegisterUserBO registerUserBO) {
         return null;
     }
+
+    @Override
+    public ResponseData<String> login(String userName, String password) {
+        return null;
+    }
 }
