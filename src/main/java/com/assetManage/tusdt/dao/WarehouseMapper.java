@@ -3,6 +3,8 @@ package com.assetManage.tusdt.dao;
 import com.assetManage.tusdt.model.Warehouse;
 import com.assetManage.tusdt.model.WarehouseExample;
 import java.util.List;
+
+import com.assetManage.tusdt.model.bo.WarehouseBO;
 import org.apache.ibatis.annotations.Param;
 
 public interface WarehouseMapper {
@@ -27,4 +29,7 @@ public interface WarehouseMapper {
     int updateByPrimaryKeySelective(Warehouse record);
 
     int updateByPrimaryKey(Warehouse record);
+
+    List<WarehouseBO> warehouseList(@Param("warehouseId") Integer warehouseId, @Param("warehouseName") String warehouseName, @Param("address") String address);
+
 }

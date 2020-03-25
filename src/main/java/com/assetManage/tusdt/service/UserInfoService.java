@@ -21,6 +21,7 @@ public interface UserInfoService {
 
     /**
      * 新建用户
+     *
      * @param user
      * @return
      */
@@ -28,6 +29,7 @@ public interface UserInfoService {
 
     /**
      * 个人中心
+     *
      * @param id
      * @return
      */
@@ -35,6 +37,7 @@ public interface UserInfoService {
 
     /**
      * 获取用户详细信息
+     *
      * @param id
      * @return
      */
@@ -42,6 +45,7 @@ public interface UserInfoService {
 
     /**
      * 删除用户
+     *
      * @param id
      * @return
      */
@@ -50,6 +54,7 @@ public interface UserInfoService {
 
     /**
      * 改变用户状态
+     *
      * @param id
      * @param status
      * @return
@@ -58,6 +63,7 @@ public interface UserInfoService {
 
     /**
      * 编辑用户资料
+     *
      * @param user
      * @return
      */
@@ -65,6 +71,7 @@ public interface UserInfoService {
 
     /**
      * 用户注册
+     *
      * @param registerUserBO
      * @return
      */
@@ -72,8 +79,17 @@ public interface UserInfoService {
 
     /**
      * 用户自己修改密码
+     *
      * @param registerUserBO
      * @return
      */
     ResponseData<String> changeUserInfoByMyself(RegisterUserBO registerUserBO);
+
+    /**
+     * 登录
+     * @param userName
+     * @param password
+     * @return
+     */
+    ResponseData<String> login(String userName, String password);
 }

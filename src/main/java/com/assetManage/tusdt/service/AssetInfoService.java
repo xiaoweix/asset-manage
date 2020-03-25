@@ -54,4 +54,6 @@ public interface AssetInfoService {
      */
     Pagination<AssetUseHistoryBO> getAssetHistory(Integer currPage, Integer pageSize, Integer assetId, String assetName, String userName, Integer type);
 
+    ResponseData<AssetInfo> getAssetInfoDetail(Integer id);
+
 }
