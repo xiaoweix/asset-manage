@@ -51,7 +51,7 @@ public class UserInfoController {
     )
     @RequestMapping(value = "/userList", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseData<List<UserListBO>> getUserList(HttpServletRequest request,
+    public ResponseData<List<User>> getUserList(HttpServletRequest request,
                                                 @RequestParam(name = "currPage", required = false, defaultValue = "1") Integer currPage,
                                                 @RequestParam(name = "pageSize", required = false, defaultValue = "20") Integer pageSize,
                                                 @RequestParam(value = "userId",required = false) Integer userId,
@@ -60,8 +60,8 @@ public class UserInfoController {
                                                 @RequestParam(value = "telephone",required = false) String telephone,
                                                 @RequestParam(value = "jobLevel",required = false) Integer jobLevel) {
 
-        ResponseData<List<UserListBO>> responseData = new ResponseData<>();
-        List<UserListBO> userList = userInfoService.getUserList(userName);
+        ResponseData<List<User>> responseData = new ResponseData<>();
+        List<User> userList = userInfoService.getUserList(userName, userId);
         if(userList == null || userList.size() == 0) {
             responseData.setError("获取失败");
         }

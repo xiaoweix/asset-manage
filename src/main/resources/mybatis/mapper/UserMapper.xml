@@ -274,12 +274,14 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByUserName" resultType="com.assetManage.tusdt.model.User">
-    select
-    <include refid="Base_Column_List" />
+    select 	id,user_name userName,`password`,signature,telephone,email,job_level jobLevel,`status`,is_delete isDelete
     from user
     where 1>0
     <if test="userName != null">
       and user_name like CONCAT(CONCAT('%',#{userName}),'%')
+    </if>
+    <if test="userId != null ">
+      and id = #{userId,jdbcType=INTEGER}
     </if>
   </select>
 </mapper>
