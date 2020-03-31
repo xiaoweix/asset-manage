@@ -56,4 +56,6 @@ public interface AssetInfoService {
 
     ResponseData<AssetInfo> getAssetInfoDetail(Integer id);
 
+
+
 }
