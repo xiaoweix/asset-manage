@@ -1,24 +1,24 @@
-package com.assetManage.tusdt.model;
+package com.assetManage.tusdt.model.bo;
 
 import java.util.Date;
 
-public class OperLog {
+/**
+ * Description:
+ * Author: xxw
+ * Date: 2020-04-02
+ * Time: 01:03
+ */
+public class OperLogListBO {
+
     private Integer id;
 
     private Integer userId;
 
+    private String userName;
+
     private String remarks;
 
     private Date startTime;
-
-    public OperLog(Integer userId, String remarks, Date startTime) {
-        this.userId = userId;
-        this.remarks = remarks;
-        this.startTime = startTime;
-    }
-
-    public OperLog() {
-    }
 
     public Integer getId() {
         return id;
@@ -36,12 +36,20 @@ public class OperLog {
         this.userId = userId;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     public String getRemarks() {
         return remarks;
     }
 
     public void setRemarks(String remarks) {
-        this.remarks = remarks == null ? null : remarks.trim();
+        this.remarks = remarks;
     }
 
     public Date getStartTime() {

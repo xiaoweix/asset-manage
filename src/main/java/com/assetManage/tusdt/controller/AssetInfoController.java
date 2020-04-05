@@ -4,14 +4,12 @@ import com.assetManage.tusdt.base.common.Pagination;
 import com.assetManage.tusdt.base.common.ResponseData;
 import com.assetManage.tusdt.base.constants.Response;
 import com.assetManage.tusdt.model.AssetInfo;
-import com.assetManage.tusdt.model.User;
 import com.assetManage.tusdt.model.bo.AssetListBO;
 import com.assetManage.tusdt.service.AssetInfoService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 /**
  * Description:
@@ -26,6 +24,9 @@ public class AssetInfoController {
 
     @Autowired
     AssetInfoService assetInfoService;
+
+    @Autowired
+
 
     @ApiOperation(value = "资源入库", notes = "增加资源")
     @ApiResponses({@ApiResponse(code = Response.OK, message = "添加成功"),})

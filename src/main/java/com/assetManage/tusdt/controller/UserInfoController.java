@@ -72,6 +72,11 @@ public class UserInfoController {
 
     @ApiOperation(value = "新增一个用户", notes = "增加用户")
     @ApiResponses({@ApiResponse(code = Response.OK, message = "添加成功"),})
+    @ApiImplicitParams(
+            value = {
+                    @ApiImplicitParam(paramType = "header", name = "token", dataType = "String", required = true, value = "token"),
+            }
+    )
     @RequestMapping(value = "/addUser", method = RequestMethod.POST)
     @ResponseBody
     public ResponseData<String> addUser(@RequestBody User user) {
@@ -81,8 +86,38 @@ public class UserInfoController {
         return responseData;
     }
 
+    @ApiOperation(value = "删除用户", notes = "删除用户")
+    @ApiResponses({@ApiResponse(code = Response.OK, message = "删除成功"),})
+    @ApiImplicitParams(
+            value = {
+                    @ApiImplicitParam(paramType = "header", name = "token", dataType = "String", required = true, value = "token"),
+            }
+    )
+    @RequestMapping(value = "/removeUser", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseData<String> removeUser(HttpServletRequest request,
+                                                @RequestParam(value = "userId",required = true) Integer userId) {
 
+        ResponseData<String> responseData = new ResponseData<>();
+        responseData = userInfoService.deleteUser(userId);
+        return responseData;
+    }
 
+    @ApiOperation(value = "编辑用户资料", notes = "编辑用户资料")
+    @ApiResponses({@ApiResponse(code = Response.OK, message = "修改成功"),})
+    @ApiImplicitParams(
+            value = {
+                    @ApiImplicitParam(paramType = "header", name = "token", dataType = "String", required = true, value = "token"),
+            }
+    )
+    @RequestMapping(value = "/modifyUser", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseData<String> modifyUser(@RequestBody User user) {
+
+        ResponseData<String> responseData;
+        responseData = userInfoService.modifyUserInfo(user);
+        return responseData;
+    }
 
 }
 

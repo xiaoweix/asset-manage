@@ -42,10 +42,10 @@ public class LoginRegisterController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     @ResponseBody
     public ResponseData<String> login(@RequestParam(value = "userName",required = true) String userName,
-                                      @RequestParam(value = "userName",required = true) String telephone) {
+                                      @RequestParam(value = "password",required = true) String password) {
 
         ResponseData<String> responseData;
-        responseData = userInfoService.login(userName,telephone);
+        responseData = userInfoService.login(userName,password);
         return responseData;
     }
 

@@ -11,6 +11,7 @@ import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -68,6 +69,39 @@ public class WarehouseController {
         } else {
             responseData.set("获取成功",warehouseList);
         }
+        return responseData;
+    }
+
+    @ApiOperation(value = "删除仓库", notes = "删除仓库")
+    @ApiResponses({@ApiResponse(code = Response.OK, message = "删除成功"),})
+    @ApiImplicitParams(
+            value = {
+                    @ApiImplicitParam(paramType = "header", name = "token", dataType = "String", required = true, value = "token"),
+            }
+    )
+    @RequestMapping(value = "/removeWarehouse", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseData<String> removeWarehouse(HttpServletRequest request,
+                                                @RequestParam(value = "warehouseId",required = true) Integer warehouseId) {
+
+        ResponseData<String> responseData = new ResponseData<>();
+        responseData = warehouseInfoService.removeWarehouse(warehouseId);
+        return responseData;
+    }
+
+    @ApiOperation(value = "编辑仓库", notes = "编辑仓库")
+    @ApiResponses({@ApiResponse(code = Response.OK, message = "修改成功"),})
+    @ApiImplicitParams(
+            value = {
+                    @ApiImplicitParam(paramType = "header", name = "token", dataType = "String", required = true, value = "token"),
+            }
+    )
+    @RequestMapping(value = "/modifyWarehouse", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseData<String> modifyWarehouse(@RequestBody Warehouse warehouse) {
+
+        ResponseData<String> responseData;
+        responseData = warehouseInfoService.modifyWarehouse(warehouse);
         return responseData;
     }
 
