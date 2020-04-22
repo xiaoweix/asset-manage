@@ -16,4 +16,9 @@ public class CommonConstant {
      * 未删除
      */
     public static final Integer DELETED_NO = 0;
+
+    /**
+     * 加密算法的名字
+     */
+    public static final String PASSWORD_HASH = "SHA-256";
 }

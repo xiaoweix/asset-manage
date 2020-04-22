@@ -4,7 +4,6 @@ import com.assetManage.tusdt.base.common.Pagination;
 import com.assetManage.tusdt.base.common.ResponseData;
 import com.assetManage.tusdt.model.AssetApply;
 import com.assetManage.tusdt.model.AssetInfo;
-import com.assetManage.tusdt.model.User;
 import com.assetManage.tusdt.model.bo.AssetListBO;
 import com.assetManage.tusdt.model.bo.AssetUseHistoryBO;
 

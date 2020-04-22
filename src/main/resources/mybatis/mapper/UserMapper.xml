@@ -282,4 +282,11 @@
       and user_name like CONCAT(CONCAT('%',#{userName}),'%')
     </if>
   </select>
+  <select id="loginByEmail" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where  email = #{email,jdbcType=VARCHAR}
+    and is_delete = 0
+  </select>
 </mapper>

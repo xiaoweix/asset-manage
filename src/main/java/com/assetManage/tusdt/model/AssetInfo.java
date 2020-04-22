@@ -21,11 +21,7 @@ public class AssetInfo {
 
     private Integer life;
 
-    private Integer isLend;
-
-    private Integer isTake;
-
-    private Integer isVisible;
+    private Integer useType;
 
     private Integer manageId;
 
@@ -117,28 +113,12 @@ public class AssetInfo {
         this.life = life;
     }
 
-    public Integer getIsLend() {
-        return isLend;
+    public Integer getUseType() {
+        return useType;
     }
 
-    public void setIsLend(Integer isLend) {
-        this.isLend = isLend;
-    }
-
-    public Integer getIsTake() {
-        return isTake;
-    }
-
-    public void setIsTake(Integer isTake) {
-        this.isTake = isTake;
-    }
-
-    public Integer getIsVisible() {
-        return isVisible;
-    }
-
-    public void setIsVisible(Integer isVisible) {
-        this.isVisible = isVisible;
+    public void setUseType(Integer useType) {
+        this.useType = useType;
     }
 
     public Integer getManageId() {

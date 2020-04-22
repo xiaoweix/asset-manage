@@ -31,4 +31,6 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
 
     List<UserListBO> selectByUserName(@Param("userName") String userName);
+
+    User loginByEmail(@Param("email") String email);
 }

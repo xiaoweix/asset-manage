@@ -6,7 +6,6 @@ import com.assetManage.tusdt.constants.CommonConstant;
 import com.assetManage.tusdt.dao.AssetInfoMapper;
 import com.assetManage.tusdt.model.AssetApply;
 import com.assetManage.tusdt.model.AssetInfo;
-import com.assetManage.tusdt.model.AssetType;
 import com.assetManage.tusdt.model.bo.AssetListBO;
 import com.assetManage.tusdt.model.bo.AssetUseHistoryBO;
 import com.assetManage.tusdt.service.AssetInfoService;

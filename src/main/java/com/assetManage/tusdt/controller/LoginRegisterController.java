@@ -20,7 +20,6 @@ import javax.annotation.Resource;
  */
 @Api(protocols = "http,https", tags = {"User"}, value = "/asset_manage/user",description = "用户登录注册")
 @RestController
-@RequestMapping(value = "/asset_manage/user")
 public class LoginRegisterController {
 
     @Resource
@@ -41,12 +40,11 @@ public class LoginRegisterController {
     @ApiResponses({@ApiResponse(code = Response.OK, message = "注册信息提交成功"),})
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseData<String> login(@RequestParam(value = "userName",required = true) String userName,
+    public String login(@RequestParam(value = "email",required = true) String email,
                                       @RequestParam(value = "password",required = true) String password) {
 
-        ResponseData<String> responseData;
-        responseData = userInfoService.login(userName,password);
-        return responseData;
+
+        return userInfoService.login(email,password);
     }
 
 }

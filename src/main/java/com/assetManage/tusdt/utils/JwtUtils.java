@@ -15,12 +15,12 @@ import java.util.Date;
 public class JwtUtils {
 
 
-    public static final String SUBJECT = "xdclass";
+    public static final String SUBJECT = "tusdt";
 
     public static final long EXPIRE = 1000*60*60*24;  //过期时间，毫秒，一天
 
     //秘钥
-    public static final  String APPSECRET = "xd666";
+    public static final  String APPSECRET = "assetManage";
 
     /**
      * 校验token
@@ -40,13 +40,13 @@ public class JwtUtils {
     public static String geneJsonWebToken(User user){
 
         if(user == null || user.getId() == null || user.getUserName() == null
-                || user.getSignature()==null){
+                || user.getJobLevel()==null){
             return null;
         }
         String token = Jwts.builder().setSubject(SUBJECT)
                 .claim("id",user.getId())
                 .claim("name",user.getUserName())
-                .claim("sign",user.getSignature())
+                .claim("jobLevel",user.getJobLevel())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis()+EXPIRE))
                 .signWith(SignatureAlgorithm.HS256,APPSECRET).compact();

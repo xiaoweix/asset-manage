@@ -87,9 +87,9 @@ public interface UserInfoService {
 
     /**
      * 登录
-     * @param userName
+     * @param email
      * @param password
      * @return
      */
-    ResponseData<String> login(String userName, String password);
+    String login(String email, String password);
 }

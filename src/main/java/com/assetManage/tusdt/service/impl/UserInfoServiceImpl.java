@@ -1,12 +1,15 @@
 package com.assetManage.tusdt.service.impl;
 
 import com.assetManage.tusdt.base.common.ResponseData;
+import com.assetManage.tusdt.constants.CommonConstant;
 import com.assetManage.tusdt.dao.UserMapper;
 import com.assetManage.tusdt.model.User;
 import com.assetManage.tusdt.model.bo.RegisterUserBO;
 import com.assetManage.tusdt.model.bo.UserDetailBO;
 import com.assetManage.tusdt.model.bo.UserListBO;
 import com.assetManage.tusdt.service.UserInfoService;
+import com.assetManage.tusdt.utils.HashUtils;
+import com.assetManage.tusdt.utils.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -78,7 +81,13 @@ public class UserInfoServiceImpl implements UserInfoService {
     }
 
     @Override
-    public ResponseData<String> login(String userName, String password) {
-        return null;
+    public String login(String email, String password) {
+        String hashPassword = HashUtils.hashEncrypt(password, CommonConstant.PASSWORD_HASH);
+        User user = userMapper.loginByEmail(email);
+        String token = null;
+        if(hashPassword.equals(user.getPassword())) {
+            token = JwtUtils.geneJsonWebToken(user);
+        }
+        return token;
     }
 }

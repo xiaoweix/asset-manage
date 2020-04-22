@@ -3,6 +3,7 @@ package com.assetManage.tusdt.intercepter;
 import com.assetManage.tusdt.utils.JwtUtils;
 import com.google.gson.Gson;
 import io.jsonwebtoken.Claims;
+import io.swagger.models.auth.In;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,10 +38,10 @@ public class LoginIntercepter implements HandlerInterceptor {
             if(claims !=null){
                 Integer userId = (Integer)claims.get("id");
                 String name = (String) claims.get("name");
-
-                request.setAttribute("user_id",userId);
+                Integer jobLevel = (Integer)claims.get("jobLevel");
+                request.setAttribute("id",userId);
                 request.setAttribute("name",name);
-
+                request.setAttribute("jobLevel",jobLevel);
                 return true;
             }
         }

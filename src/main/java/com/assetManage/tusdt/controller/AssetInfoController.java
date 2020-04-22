@@ -25,8 +25,6 @@ public class AssetInfoController {
     @Autowired
     AssetInfoService assetInfoService;
 
-    @Autowired
-
 
     @ApiOperation(value = "资源入库", notes = "增加资源")
     @ApiResponses({@ApiResponse(code = Response.OK, message = "添加成功"),})
