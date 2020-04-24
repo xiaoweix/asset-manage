@@ -8,6 +8,8 @@ import com.assetManage.tusdt.model.Warehouse;
 import com.assetManage.tusdt.model.bo.AssetListBO;
 import com.assetManage.tusdt.model.bo.WarehouseBO;
 import com.assetManage.tusdt.service.WarehouseInfoService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -68,8 +70,8 @@ public class WarehouseController {
                                                                @RequestParam(value = "assetId",required = false) Integer id,
                                                                @RequestParam(value = "address",required = false) String address
     ) {
-
         ResponseData<List<WarehouseBO>> responseData = new ResponseData<>();
+
         int rank = (int) request.getAttribute("jobLevel");
         Integer userId = (Integer) request.getAttribute("id");
         if(rank < CommonConstant.JOB_LEVEL_ADMIN) {
@@ -77,10 +79,15 @@ public class WarehouseController {
             return responseData;
         }
         List<WarehouseBO> warehouseList = warehouseInfoService.getWarehouseList(currPage,pageSize,id,warehouseName,address);
+
+
         if(warehouseList == null ) {
             responseData.setError("获取失败");
+            return responseData;
         } else {
-            responseData.set("获取成功",warehouseList);
+            PageHelper.startPage(currPage,pageSize);
+            PageInfo<WarehouseBO> pageInfo = new PageInfo<>(warehouseList);
+            responseData.set("获取成功",pageInfo.getList());
         }
         return responseData;
     }

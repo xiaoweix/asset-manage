@@ -5,7 +5,10 @@ import com.assetManage.tusdt.base.constants.Response;
 import com.assetManage.tusdt.constants.CommonConstant;
 import com.assetManage.tusdt.model.AssetApply;
 import com.assetManage.tusdt.model.bo.AssetApplyListBO;
+import com.assetManage.tusdt.model.bo.WarehouseBO;
 import com.assetManage.tusdt.service.AssetApplyService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.*;
 
@@ -74,10 +77,9 @@ public class AssetApplyController {
             return responseData;
         }
         List<AssetApplyListBO> assetLogListBOList = assetApplyService.getAssetApplyList(currPage, pageSize, assetId, userName, status, telephone, jobLevel);
-        if(assetLogListBOList == null) {
-            responseData.setError("获取失败");
-        }
-        responseData.set("获取成功",assetLogListBOList);
+        PageHelper.startPage(currPage,pageSize);
+        PageInfo<AssetApplyListBO> pageInfo = new PageInfo<>(assetLogListBOList);
+        responseData.set("获取成功",pageInfo.getList());
         return responseData;
     }
 

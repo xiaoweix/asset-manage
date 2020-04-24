@@ -53,11 +53,10 @@ public class AssetInfoServiceImpl implements AssetInfoService {
     }
 
     @Override
-    public Pagination<AssetListBO> getAssetList(Integer currPage, Integer pageSize, Integer assetId, String assetName, String repositoryName, Integer status, Integer useType) {
+    public List<AssetListBO> getAssetList(Integer currPage, Integer pageSize, Integer assetId, String assetName, String repositoryName, Integer status, Integer useType) {
 //        PageMethod.startPage(currPage, pageSize);
         List<AssetListBO> assetListBOList = assetInfoMapper.selectAssetList(assetId, assetName, repositoryName, status, useType);
-        Pagination<AssetListBO> assetList = new Pagination<>(assetListBOList);
-        return assetList;
+        return assetListBOList;
     }
 
     @Override

@@ -417,4 +417,31 @@
       and aa.user_id = #{userId,jdbcType=INTEGER}
     </if>
   </select>
+<!--  类型1:借用、2:申领、3:采购、4:反馈、5、固定使用-->
+  <select id="countLend" resultType="java.lang.Integer">
+    select count(1) from asset_apply where type = 1
+  </select>
+  <select id="countGet" resultType="java.lang.Integer">
+    select count(1) from asset_apply where type = 2
+  </select>
+  <select id="countUse" resultType="java.lang.Integer">
+    select count(1) from asset_apply where type = 5
+  </select>
+  <select id="countRepair" resultType="java.lang.Integer">
+    select count(1) from asset_apply where type = 4
+  </select>
+
+  <select id="getRank" resultType="com.assetManage.tusdt.model.bo.AssetLendRankBO">
+    select ai.asset_name assetName, count(1) assetNum from asset_apply aa, asset_info ai
+    where aa.asset_id = ai.id
+    group by ai.asset_name
+    order by assetNum
+    limit 5
+  </select>
+  <!--    最近半年执行情况-->
+  <select id="selectLatelyTask" resultType="java.util.Map">
+    SELECT DATE_FORMAT(start_time,"%Y.%m") monthDate, COUNT(1) total
+    FROM asset_apply GROUP BY  YEAR(start_time),MONTH(start_time)
+    ORDER BY start_time DESC LIMIT 1,7
+  </select>
 </mapper>

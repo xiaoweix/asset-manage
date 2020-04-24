@@ -1,6 +1,7 @@
 package com.assetManage.tusdt.model.bo;
 
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -29,7 +30,7 @@ public class IndexDataBO {
 
     private List<AssetLendRankBO> assetLendRankList;
 
-    private List<AssetUseHalfYearBO> assetUseHalfYearBOList;
+    private List<HashMap<String,Integer>> assetUseHalfYearBOList;
 
     public Integer getAssetSum() {
         return assetSum;
@@ -103,11 +104,11 @@ public class IndexDataBO {
         this.assetLendRankList = assetLendRankList;
     }
 
-    public List<AssetUseHalfYearBO> getAssetUseHalfYearBOList() {
+    public List<HashMap<String, Integer>> getAssetUseHalfYearBOList() {
         return assetUseHalfYearBOList;
     }
 
-    public void setAssetUseHalfYearBOList(List<AssetUseHalfYearBO> assetUseHalfYearBOList) {
+    public void setAssetUseHalfYearBOList(List<HashMap<String, Integer>> assetUseHalfYearBOList) {
         this.assetUseHalfYearBOList = assetUseHalfYearBOList;
     }
 }

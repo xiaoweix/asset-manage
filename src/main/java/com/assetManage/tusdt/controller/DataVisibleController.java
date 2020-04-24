@@ -6,6 +6,8 @@ import com.assetManage.tusdt.service.DataVisibleService;
 import com.assetManage.tusdt.utils.JwtUtils;
 import io.jsonwebtoken.Claims;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,6 +32,11 @@ public class DataVisibleController {
     DataVisibleService dataVisibleService;
 
     @ApiOperation(value = "首页的数据可视化", notes = "首页的数据可视化")
+    @ApiImplicitParams(
+            value = {
+                    @ApiImplicitParam(paramType = "header", name = "token", dataType = "String", required = true, value = "token"),
+            }
+    )
     @ResponseBody
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public ResponseData<IndexDataBO> index(HttpServletRequest request) {

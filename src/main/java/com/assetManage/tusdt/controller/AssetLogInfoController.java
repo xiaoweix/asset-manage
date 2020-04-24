@@ -4,8 +4,11 @@ import com.assetManage.tusdt.base.common.ResponseData;
 import com.assetManage.tusdt.base.constants.Response;
 import com.assetManage.tusdt.constants.CommonConstant;
 import com.assetManage.tusdt.model.bo.AssetApplyListBO;
+import com.assetManage.tusdt.model.bo.AssetListBO;
 import com.assetManage.tusdt.model.bo.OperLogListBO;
 import com.assetManage.tusdt.service.AssetLogInfoService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -55,8 +58,11 @@ public class AssetLogInfoController {
         List<OperLogListBO> operLogListBOS = assetLogInfoService.getOperLog(userName, dataFrom, dataEnd);
         if(operLogListBOS == null) {
             responseData.setError("获取失败");
+            return responseData;
         }
-        responseData.set("获取成功",operLogListBOS);
+        PageHelper.startPage(currPage,pageSize);
+        PageInfo<OperLogListBO> pageInfo = new PageInfo<>(operLogListBOS);
+        responseData.set("获取成功",pageInfo.getList());
         return responseData;
     }
 

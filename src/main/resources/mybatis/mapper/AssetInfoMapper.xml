@@ -275,4 +275,17 @@
       and ai.useType != #{useType,jdbcType=INTEGER}
     </if>
   </select>
+  <select id="countAsset" resultType="java.lang.Integer">
+    select count(1) from asset_info where is_delete = 0
+  </select>
+  <select id="countAssetInUse" resultType="java.lang.Integer">
+    select count(1) from asset_info where is_delete = 0 and status != 0 and status != 3 and status != 4
+  </select>
+  <select id="countAssetLend" resultType="java.lang.Integer">
+    select count(1) from asset_info where is_delete = 0 and status = 1
+  </select>
+  <select id="countAssetDamageNum" resultType="java.lang.Integer">
+    select count(1) from asset_info where is_delete = 0 and status != 0 and status != 1 and status != 2
+  </select>
+
 </mapper>

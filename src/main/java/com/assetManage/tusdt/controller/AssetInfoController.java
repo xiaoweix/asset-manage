@@ -5,9 +5,12 @@ import com.assetManage.tusdt.base.common.ResponseData;
 import com.assetManage.tusdt.base.constants.Response;
 import com.assetManage.tusdt.constants.CommonConstant;
 import com.assetManage.tusdt.model.AssetInfo;
+import com.assetManage.tusdt.model.bo.AssetApplyListBO;
 import com.assetManage.tusdt.model.bo.AssetListBO;
 import com.assetManage.tusdt.model.bo.AssetUseHistoryBO;
 import com.assetManage.tusdt.service.AssetInfoService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -62,7 +65,7 @@ public class AssetInfoController {
     )
     @RequestMapping(value = "/assetList", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseData<Pagination<AssetListBO>> getUserList(HttpServletRequest request,
+    public ResponseData<List<AssetListBO>> getUserList(HttpServletRequest request,
                                                              @RequestParam(name = "currPage", required = false, defaultValue = "1") Integer currPage,
                                                              @RequestParam(name = "pageSize", required = false, defaultValue = "20") Integer pageSize,
                                                              @RequestParam(value = "assetName",required = false) String assetName,
@@ -70,17 +73,20 @@ public class AssetInfoController {
                                                              @RequestParam(value = "warehouseName",required = false) String warehouseName,
                                                              @RequestParam(value = "status",required = false) Integer status
                                                 ) {
-        ResponseData<Pagination<AssetListBO>> responseData = new ResponseData<>();
+        ResponseData<List<AssetListBO>> responseData = new ResponseData<>();
         Integer useType = null;
         int rank = (int) request.getAttribute("jobLevel");
         if(rank < CommonConstant.JOB_LEVEL_ADMIN) {
             useType = CommonConstant.ASSET_USE_TYPE_USE;
         }
-        Pagination<AssetListBO> assetList = assetInfoService.getAssetList(currPage, pageSize, assetId, assetName, warehouseName, status, useType);
+        List<AssetListBO> assetList = assetInfoService.getAssetList(currPage, pageSize, assetId, assetName, warehouseName, status, useType);
         if(assetList == null ) {
             responseData.setError("获取失败");
+            return responseData;
         }
-        responseData.set("获取成功",assetList);
+        PageHelper.startPage(currPage,pageSize);
+        PageInfo<AssetListBO> pageInfo = new PageInfo<>(assetList);
+        responseData.set("获取成功",pageInfo.getList());
         return responseData;
     }
 
@@ -148,7 +154,9 @@ public class AssetInfoController {
         if(assetList == null ) {
             responseData.setError("获取失败");
         }
-        responseData.set("获取成功",assetList);
+        PageHelper.startPage(currPage,pageSize);
+        PageInfo<AssetUseHistoryBO> pageInfo = new PageInfo<>(assetList);
+        responseData.set("获取成功",pageInfo.getList());
         return responseData;
     }
 }

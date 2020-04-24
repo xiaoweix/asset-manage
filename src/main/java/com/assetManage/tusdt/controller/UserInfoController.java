@@ -4,9 +4,12 @@ import com.assetManage.tusdt.base.common.ResponseData;
 import com.assetManage.tusdt.base.constants.Response;
 import com.assetManage.tusdt.constants.CommonConstant;
 import com.assetManage.tusdt.model.User;
+import com.assetManage.tusdt.model.bo.OperLogListBO;
 import com.assetManage.tusdt.model.bo.UserDetailBO;
 import com.assetManage.tusdt.model.bo.UserListBO;
 import com.assetManage.tusdt.service.UserInfoService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.*;
 
@@ -57,7 +60,10 @@ public class UserInfoController {
             responseData.setError("获取失败");
             return responseData;
         }
-        responseData.set("获取成功",userList);
+
+        PageHelper.startPage(currPage,pageSize);
+        PageInfo<UserListBO> pageInfo = new PageInfo<>(userList);
+        responseData.set("获取成功",pageInfo.getList());
         return responseData;
     }
 

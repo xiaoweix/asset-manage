@@ -69,7 +69,6 @@
 			<version>4.1.0</version>
 		</dependency>
 
-
 		<!-- JWT相关 -->
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>

@@ -34,7 +34,7 @@ public interface AssetInfoService {
      * @param status
      * @return
      */
-    Pagination<AssetListBO> getAssetList(Integer currPage, Integer pageSize, Integer assetId, String assetName, String repositoryName, Integer status, Integer useType);
+    List<AssetListBO> getAssetList(Integer currPage, Integer pageSize, Integer assetId, String assetName, String repositoryName, Integer status, Integer useType);
 
     /**
      * 资产使用历史

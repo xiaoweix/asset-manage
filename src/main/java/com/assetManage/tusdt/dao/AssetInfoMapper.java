@@ -19,5 +19,13 @@ public interface AssetInfoMapper {
 
     int updateByPrimaryKey(AssetInfo record);
 
+    int countAsset();
+
+    int countAssetInUse();
+
+    int countAssetLend();
+
+    int countAssetDamageNum();
+
     List<AssetListBO> selectAssetList(@Param("assetId") Integer assetId, @Param("assetName") String assetName, @Param("repositoryName") String repositoryName, @Param("status") Integer status, @Param("useType") Integer useType);
 }
