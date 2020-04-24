@@ -20,9 +20,7 @@ public class AssetListBO {
 
     private Date purchaseDate;
 
-    private Integer isLend;
-
-    private Integer isTake;
+    private Integer useType;
 
     private Integer isVisible;
 
@@ -68,20 +66,12 @@ public class AssetListBO {
         this.purchaseDate = purchaseDate;
     }
 
-    public Integer getIsLend() {
-        return isLend;
+    public Integer getUseType() {
+        return useType;
     }
 
-    public void setIsLend(Integer isLend) {
-        this.isLend = isLend;
-    }
-
-    public Integer getIsTake() {
-        return isTake;
-    }
-
-    public void setIsTake(Integer isTake) {
-        this.isTake = isTake;
+    public void setUseType(Integer useType) {
+        this.useType = useType;
     }
 
     public Integer getIsVisible() {

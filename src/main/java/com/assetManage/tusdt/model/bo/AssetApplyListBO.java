@@ -8,7 +8,7 @@ import java.util.Date;
  * Date: 2020-04-02
  * Time: 00:43
  */
-public class AssetLogListBO {
+public class AssetApplyListBO {
 
     private Integer id;
 
@@ -16,7 +16,7 @@ public class AssetLogListBO {
 
     private Integer number;
 
-    private Integer userName;
+    private String userName;
 
     private Integer assetId;
 
@@ -52,11 +52,11 @@ public class AssetLogListBO {
         this.number = number;
     }
 
-    public Integer getUserName() {
+    public String getUserName() {
         return userName;
     }
 
-    public void setUserName(Integer userName) {
+    public void setUserName(String userName) {
         this.userName = userName;
     }
 

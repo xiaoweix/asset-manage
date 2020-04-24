@@ -20,6 +20,13 @@ public class OperLog {
     public OperLog() {
     }
 
+    public OperLog(Integer id, Integer userId, String remarks, Date startTime) {
+        this.id = id;
+        this.userId = userId;
+        this.remarks = remarks;
+        this.startTime = startTime;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -51,4 +58,6 @@ public class OperLog {
     public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
+
+
 }

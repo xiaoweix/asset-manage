@@ -7,6 +7,8 @@ import com.assetManage.tusdt.model.AssetInfo;
 import com.assetManage.tusdt.model.bo.AssetListBO;
 import com.assetManage.tusdt.model.bo.AssetUseHistoryBO;
 
+import java.util.List;
+
 /**
  * Description:
  * Author: xxw
@@ -20,7 +22,7 @@ public interface AssetInfoService {
      * @param assetInfo
      * @return
      */
-    ResponseData<String> addAsset(AssetInfo assetInfo);
+    ResponseData<String> addAsset(Integer userId,AssetInfo assetInfo);
 
     /**
      * 资产列表
@@ -32,14 +34,7 @@ public interface AssetInfoService {
      * @param status
      * @return
      */
-    Pagination<AssetListBO> getAssetList(Integer currPage, Integer pageSize, Integer assetId, String assetName, String repositoryName, Integer status);
-
-    /**
-     * 资产申请
-     * @param assetApply
-     * @return
-     */
-    ResponseData<String> assetApply(AssetApply assetApply);
+    Pagination<AssetListBO> getAssetList(Integer currPage, Integer pageSize, Integer assetId, String assetName, String repositoryName, Integer status, Integer useType);
 
     /**
      * 资产使用历史
@@ -51,8 +46,14 @@ public interface AssetInfoService {
      * @param type
      * @return
      */
-    Pagination<AssetUseHistoryBO> getAssetHistory(Integer currPage, Integer pageSize, Integer assetId, String assetName, String userName, Integer type);
+    List<AssetUseHistoryBO> getAssetHistory(Integer currPage, Integer pageSize, Integer assetId, String assetName, String userName, Integer type);
 
     ResponseData<AssetInfo> getAssetInfoDetail(Integer id);
 
+    /**
+     * 资产入库
+     * @param assetInfo
+     * @return
+     */
+    ResponseData<String> modifyAsset(Integer userId,AssetInfo assetInfo);
 }

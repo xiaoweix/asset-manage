@@ -3,12 +3,15 @@ package com.assetManage.tusdt.controller;
 import com.assetManage.tusdt.base.common.Pagination;
 import com.assetManage.tusdt.base.common.ResponseData;
 import com.assetManage.tusdt.base.constants.Response;
+import com.assetManage.tusdt.constants.CommonConstant;
 import com.assetManage.tusdt.model.AssetInfo;
 import com.assetManage.tusdt.model.bo.AssetListBO;
 import com.assetManage.tusdt.service.AssetInfoService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 /**
@@ -28,12 +31,23 @@ public class AssetInfoController {
 
     @ApiOperation(value = "资源入库", notes = "增加资源")
     @ApiResponses({@ApiResponse(code = Response.OK, message = "添加成功"),})
+    @ApiImplicitParams(
+            value = {
+                    @ApiImplicitParam(paramType = "header", name = "token", dataType = "String", required = true, value = "token"),
+            }
+    )
     @RequestMapping(value = "/addAsset", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseData<String> addAsset(@RequestBody AssetInfo assetInfo) {
+    public ResponseData<String> addAsset(HttpServletRequest request,@RequestBody AssetInfo assetInfo) {
 
-        ResponseData<String> responseData;
-        responseData = assetInfoService.addAsset(assetInfo);
+        ResponseData<String> responseData = new ResponseData<>();
+        int rank = (int) request.getAttribute("jobLevel");
+        if(rank < CommonConstant.JOB_LEVEL_ADMIN) {
+            responseData.setError("权限不足");
+            return responseData;
+        }
+        Integer userId = (Integer) request.getAttribute("id");
+        responseData = assetInfoService.addAsset(userId,assetInfo);
         return responseData;
     }
 
@@ -46,16 +60,21 @@ public class AssetInfoController {
     )
     @RequestMapping(value = "/assetList", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseData<Pagination<AssetListBO>> getUserList(@RequestParam(name = "currPage", required = false, defaultValue = "1") Integer currPage,
-                                                @RequestParam(name = "pageSize", required = false, defaultValue = "20") Integer pageSize,
-                                                @RequestParam(value = "assetName",required = false) String assetName,
-                                                @RequestParam(value = "assetId",required = false) Integer assetId,
-                                                @RequestParam(value = "warehouseName",required = false) String warehouseName,
-                                                @RequestParam(value = "status",required = false) Integer status
+    public ResponseData<Pagination<AssetListBO>> getUserList(HttpServletRequest request,
+                                                             @RequestParam(name = "currPage", required = false, defaultValue = "1") Integer currPage,
+                                                             @RequestParam(name = "pageSize", required = false, defaultValue = "20") Integer pageSize,
+                                                             @RequestParam(value = "assetName",required = false) String assetName,
+                                                             @RequestParam(value = "assetId",required = false) Integer assetId,
+                                                             @RequestParam(value = "warehouseName",required = false) String warehouseName,
+                                                             @RequestParam(value = "status",required = false) Integer status
                                                 ) {
-
         ResponseData<Pagination<AssetListBO>> responseData = new ResponseData<>();
-        Pagination<AssetListBO> assetList = assetInfoService.getAssetList(currPage,pageSize,assetId,assetName,warehouseName,status);
+        Integer useType = null;
+        int rank = (int) request.getAttribute("jobLevel");
+        if(rank < CommonConstant.JOB_LEVEL_ADMIN) {
+            useType = CommonConstant.ASSET_USE_TYPE_USE;
+        }
+        Pagination<AssetListBO> assetList = assetInfoService.getAssetList(currPage, pageSize, assetId, assetName, warehouseName, status, useType);
         if(assetList == null ) {
             responseData.setError("获取失败");
         }
@@ -78,4 +97,25 @@ public class AssetInfoController {
         return responseData;
     }
 
+    @ApiOperation(value = "修改、编辑资源", notes = "修改资源")
+    @ApiResponses({@ApiResponse(code = Response.OK, message = "添加成功"),})
+    @ApiImplicitParams(
+            value = {
+                    @ApiImplicitParam(paramType = "header", name = "token", dataType = "String", required = true, value = "token"),
+            }
+    )
+    @RequestMapping(value = "/modifyAsset", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseData<String> modifyAsset(HttpServletRequest request,@RequestBody AssetInfo assetInfo) {
+
+        ResponseData<String> responseData = new ResponseData<>();
+        int rank = (int) request.getAttribute("jobLevel");
+        if(rank < CommonConstant.JOB_LEVEL_ADMIN) {
+            responseData.setError("权限不足");
+            return responseData;
+        }
+        Integer userId = (Integer) request.getAttribute("id");
+        responseData = assetInfoService.modifyAsset(userId,assetInfo);
+        return responseData;
+    }
 }

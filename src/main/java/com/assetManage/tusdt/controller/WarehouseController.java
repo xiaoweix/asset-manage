@@ -3,6 +3,7 @@ package com.assetManage.tusdt.controller;
 import com.assetManage.tusdt.base.common.Pagination;
 import com.assetManage.tusdt.base.common.ResponseData;
 import com.assetManage.tusdt.base.constants.Response;
+import com.assetManage.tusdt.constants.CommonConstant;
 import com.assetManage.tusdt.model.Warehouse;
 import com.assetManage.tusdt.model.bo.AssetListBO;
 import com.assetManage.tusdt.model.bo.WarehouseBO;
@@ -38,10 +39,16 @@ public class WarehouseController {
     )
     @RequestMapping(value = "/addWarehouse", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseData<String> addAsset(@RequestBody Warehouse warehouse) {
+    public ResponseData<String> addAsset(HttpServletRequest request, @RequestBody Warehouse warehouse) {
 
-        ResponseData<String> responseData;
-        responseData = warehouseInfoService.addWarehouse(warehouse);
+        ResponseData<String> responseData = new ResponseData<>();
+        int rank = (int) request.getAttribute("jobLevel");
+        Integer userId = (Integer) request.getAttribute("id");
+        if(rank < CommonConstant.JOB_LEVEL_ADMIN) {
+            responseData.setError("权限不足");
+            return responseData;
+        }
+        responseData = warehouseInfoService.addWarehouse(userId, warehouse);
         return responseData;
     }
 
@@ -55,7 +62,7 @@ public class WarehouseController {
     )
     @RequestMapping(value = "/warehouseList", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseData<List<WarehouseBO>> warehouseList(@RequestParam(name = "currPage", required = false, defaultValue = "1") Integer currPage,
+    public ResponseData<List<WarehouseBO>> warehouseList(HttpServletRequest request,@RequestParam(name = "currPage", required = false, defaultValue = "1") Integer currPage,
                                                                @RequestParam(name = "pageSize", required = false, defaultValue = "20") Integer pageSize,
                                                                @RequestParam(value = "warehouseName",required = false) String warehouseName,
                                                                @RequestParam(value = "assetId",required = false) Integer id,
@@ -63,6 +70,12 @@ public class WarehouseController {
     ) {
 
         ResponseData<List<WarehouseBO>> responseData = new ResponseData<>();
+        int rank = (int) request.getAttribute("jobLevel");
+        Integer userId = (Integer) request.getAttribute("id");
+        if(rank < CommonConstant.JOB_LEVEL_ADMIN) {
+            responseData.setError("权限不足");
+            return responseData;
+        }
         List<WarehouseBO> warehouseList = warehouseInfoService.getWarehouseList(currPage,pageSize,id,warehouseName,address);
         if(warehouseList == null ) {
             responseData.setError("获取失败");
@@ -85,7 +98,13 @@ public class WarehouseController {
                                                 @RequestParam(value = "warehouseId",required = true) Integer warehouseId) {
 
         ResponseData<String> responseData = new ResponseData<>();
-        responseData = warehouseInfoService.removeWarehouse(warehouseId);
+        int rank = (int) request.getAttribute("jobLevel");
+        Integer userId = (Integer) request.getAttribute("id");
+        if(rank < CommonConstant.JOB_LEVEL_ADMIN) {
+            responseData.setError("权限不足");
+            return responseData;
+        }
+        responseData = warehouseInfoService.removeWarehouse(userId,warehouseId);
         return responseData;
     }
 
@@ -98,10 +117,16 @@ public class WarehouseController {
     )
     @RequestMapping(value = "/modifyWarehouse", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseData<String> modifyWarehouse(@RequestBody Warehouse warehouse) {
+    public ResponseData<String> modifyWarehouse(HttpServletRequest request, @RequestBody Warehouse warehouse) {
 
-        ResponseData<String> responseData;
-        responseData = warehouseInfoService.modifyWarehouse(warehouse);
+        ResponseData<String> responseData = new ResponseData<>();
+        int rank = (int) request.getAttribute("jobLevel");
+        Integer userId = (Integer) request.getAttribute("id");
+        if(rank < CommonConstant.JOB_LEVEL_ADMIN) {
+            responseData.setError("权限不足");
+            return responseData;
+        }
+        responseData = warehouseInfoService.modifyWarehouse(userId,warehouse);
         return responseData;
     }
 

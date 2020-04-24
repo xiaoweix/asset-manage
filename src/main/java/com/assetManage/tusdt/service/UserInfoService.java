@@ -6,6 +6,7 @@ import com.assetManage.tusdt.model.User;
 import com.assetManage.tusdt.model.bo.RegisterUserBO;
 import com.assetManage.tusdt.model.bo.UserDetailBO;
 import com.assetManage.tusdt.model.bo.UserListBO;
+import com.assetManage.tusdt.model.bo.UserLoginBO;
 
 import java.util.List;
 
@@ -72,10 +73,10 @@ public interface UserInfoService {
     /**
      * 用户注册
      *
-     * @param registerUserBO
+     * @param user
      * @return
      */
-    ResponseData<String> registerUser(RegisterUserBO registerUserBO);
+    ResponseData<String> registerUser(User user);
 
     /**
      * 用户自己修改密码
@@ -91,5 +92,5 @@ public interface UserInfoService {
      * @param password
      * @return
      */
-    String login(String email, String password);
+    ResponseData<UserLoginBO> login(String email, String password);
 }

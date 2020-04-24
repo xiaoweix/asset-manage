@@ -3,6 +3,8 @@ package com.assetManage.tusdt.dao;
 import com.assetManage.tusdt.model.OperLog;
 import com.assetManage.tusdt.model.OperLogExample;
 import java.util.List;
+
+import com.assetManage.tusdt.model.bo.OperLogListBO;
 import org.apache.ibatis.annotations.Param;
 
 public interface OperLogMapper {
@@ -27,4 +29,6 @@ public interface OperLogMapper {
     int updateByPrimaryKeySelective(OperLog record);
 
     int updateByPrimaryKey(OperLog record);
+
+    List<OperLogListBO> getOperLogList(@Param("userName") String userName,@Param("dataFrom") String dataFrom,@Param("dataEnd") String dataEnd);
 }

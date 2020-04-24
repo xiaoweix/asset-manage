@@ -16,11 +16,11 @@ import java.util.List;
  */
 public interface WarehouseInfoService {
 
-    ResponseData<String> addWarehouse(Warehouse warehouse);
+    ResponseData<String> addWarehouse(Integer userId, Warehouse warehouse);
 
-    ResponseData<String> modifyWarehouse(Warehouse warehouse);
+    ResponseData<String> modifyWarehouse(Integer userId, Warehouse warehouse);
 
-    ResponseData<String> removeWarehouse(Integer id);
+    ResponseData<String> removeWarehouse(Integer userId,Integer id);
 
     List<WarehouseBO> getWarehouseList(Integer currPage, Integer pageSize, Integer warehouseId, String warehouseName, String address);
 }

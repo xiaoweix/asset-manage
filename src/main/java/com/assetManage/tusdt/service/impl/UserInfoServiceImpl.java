@@ -7,12 +7,14 @@ import com.assetManage.tusdt.model.User;
 import com.assetManage.tusdt.model.bo.RegisterUserBO;
 import com.assetManage.tusdt.model.bo.UserDetailBO;
 import com.assetManage.tusdt.model.bo.UserListBO;
+import com.assetManage.tusdt.model.bo.UserLoginBO;
 import com.assetManage.tusdt.service.UserInfoService;
 import com.assetManage.tusdt.utils.HashUtils;
 import com.assetManage.tusdt.utils.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -36,6 +38,9 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     public ResponseData<String> addUser(User user) {
         ResponseData<String> responseData = new ResponseData<>();
+        user.setPassword(HashUtils.hashEncrypt(user.getPassword(),CommonConstant.PASSWORD_HASH));
+        user.setIsDelete(CommonConstant.DELETED_NO);
+        user.setStatus(CommonConstant.USER_STATUS_NORMAL);
         Integer result = userMapper.insert(user);
         if (result == 1) {
             responseData.setOK("添加成功");
@@ -71,8 +76,26 @@ public class UserInfoServiceImpl implements UserInfoService {
     }
 
     @Override
-    public ResponseData<String> registerUser(RegisterUserBO registerUserBO) {
-        return null;
+    public ResponseData<String> registerUser(User user) {
+        ResponseData<String> responseData = new ResponseData<>();
+
+        User checkUserEmail = userMapper.loginByEmail(user.getEmail());
+
+        if(checkUserEmail != null) {
+            responseData.setError("该用户邮箱已存在！");
+            return responseData;
+        }
+        user.setIsDelete(CommonConstant.DELETED_NO);
+        user.setStatus(CommonConstant.USER_STATUS_UNAUDITED);
+        user.setJobLevel(CommonConstant.JOB_LEVEL_STUDENT);
+        user.setPassword(HashUtils.hashEncrypt(user.getPassword(),CommonConstant.PASSWORD_HASH));
+        Integer result = userMapper.insert(user);
+        if (result == 0) {
+            responseData.setError("注册失败");
+            return responseData;
+        }
+        responseData.setOK("注册成功");
+        return responseData;
     }
 
     @Override
@@ -81,13 +104,23 @@ public class UserInfoServiceImpl implements UserInfoService {
     }
 
     @Override
-    public String login(String email, String password) {
+    public ResponseData<UserLoginBO> login(String email, String password) {
+        ResponseData<UserLoginBO> responseData = new ResponseData<>();
+        UserLoginBO userLoginBO = new UserLoginBO();
         String hashPassword = HashUtils.hashEncrypt(password, CommonConstant.PASSWORD_HASH);
         User user = userMapper.loginByEmail(email);
-        String token = null;
-        if(hashPassword.equals(user.getPassword())) {
-            token = JwtUtils.geneJsonWebToken(user);
+        userLoginBO.setCode(user.getJobLevel().toString());
+        if(user.getStatus().equals(CommonConstant.USER_STATUS_ABNORMAL)) {
+            responseData.setError("账号冻结 请联系管理员");
+            return responseData;
         }
-        return token;
+        if(hashPassword.equals(user.getPassword())) {
+            userLoginBO.setToken(JwtUtils.geneJsonWebToken(user));
+        } else {
+            responseData.setError("密码错误");
+            return responseData;
+        }
+        responseData.setOK("登陆成功",userLoginBO);
+        return responseData;
     }
 }

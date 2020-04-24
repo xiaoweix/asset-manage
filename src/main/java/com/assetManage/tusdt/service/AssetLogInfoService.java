@@ -1,9 +1,6 @@
 package com.assetManage.tusdt.service;
 
-import com.assetManage.tusdt.base.common.ResponseData;
-import com.assetManage.tusdt.model.bo.AssetLogInfoDetailBO;
-import com.assetManage.tusdt.model.bo.AssetLogListBO;
-import org.springframework.web.bind.annotation.RequestParam;
+import com.assetManage.tusdt.model.bo.OperLogListBO;
 
 import java.util.List;
 
@@ -15,43 +12,9 @@ import java.util.List;
  */
 public interface AssetLogInfoService {
 
-    /**
-     * 获取申请资源的列表
-     * @param currPage
-     * @param pageSize
-     * @param assetId
-     * @param userName
-     * @param status
-     * @param telephone
-     * @param jobLevel
-     * @return
-     */
-    List<AssetLogListBO> getAssetApplyList(Integer currPage, Integer pageSize, Integer assetId, String userName, Integer status, String telephone,Integer jobLevel);
+    List<OperLogListBO> getOperLog(String userName, String dataFrom, String dataEnd);
 
-    /**
-     * 获取申请信息详情
-     * @param applyId
-     * @return
-     */
-    ResponseData<AssetLogInfoDetailBO> getApplyInfoDetail(Integer applyId);
-
-    /**
-     * 同意申请
-     * @param applyId
-     * @return
-     */
-    ResponseData<String> agreeApply(Integer applyId);
-
-    /**
-     * 拒绝申请
-     * @param applyId
-     * @return
-     */
-    ResponseData<String> refuseApply(Integer applyId);
-
-
-
-
+    void addOperLog(Integer userId, String remark);
 
 
 }

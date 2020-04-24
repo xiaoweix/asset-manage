@@ -368,4 +368,38 @@
       image3 = #{image3,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectApplyDetail" resultType="com.assetManage.tusdt.model.bo.AssetLogInfoDetailBO">
+    select aa.type, aa.number,u.user_name userName, aa.asset_id assetId,ai.asset_name assetName,ai.version assetVersion, aa.address, aa.purpose,
+    aa.start_time startTime,aa.end_time endTime,aa.urgency, aa.remarks, aa.result, aa.image1, aa.image2, aa.image3
+    from asset_apply aa, asset_info ai, user u
+    where aa.user_id = u.id
+    and aa.asset_id = ai.id
+    and aa.id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="getAssetApplyList" resultType="com.assetManage.tusdt.model.bo.AssetApplyListBO">
+    select aa.id, aa.type, aa.number,u.user_name userName, aa.asset_id assetId, ai.asset_name assetName,aa.start_time startTime, urgency, result
+    from asset_apply aa, asset_info ai, user u
+    where aa.user_id = u.id
+    and aa.asset_id = ai.id
+    <if test="assetId != null" >
+      and asset_id = #{assetId,jdbcType=INTEGER}
+    </if>
+    <if test="userName != null">
+      AND u.user_name like CONCAT(CONCAT('%',#{userName}),'%')
+    </if>
+    <if test="status != null" >
+      and aa.result = #{status,jdbcType=INTEGER}
+    </if>
+    <if test="jobLevel != null" >
+      and u.job_level = #{jobLevel,jdbcType=INTEGER}
+    </if>
+    <if test="telephone != null" >
+      and u.telephone = #{telephone,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <select id="getAssetUseHistry" resultType="com.assetManage.tusdt.model.bo.AssetUseHistoryBO">
+    select au.id, assetName ,applyType, u.userName,au.start_time startTime,status from asset_use au, asset_info ai, user u
+    where au.asset_id = ai.id
+    and au.userId = u.id
+  </select>
 </mapper>

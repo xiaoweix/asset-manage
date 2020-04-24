@@ -16,7 +16,7 @@ public class WarehouseBO {
 
     private String address;
 
-    private Integer manageName;
+    private String manageName;
 
     private Date createTime;
 
@@ -46,11 +46,11 @@ public class WarehouseBO {
         this.address = address;
     }
 
-    public Integer getManageName() {
+    public String getManageName() {
         return manageName;
     }
 
-    public void setManageName(Integer manageName) {
+    public void setManageName(String manageName) {
         this.manageName = manageName;
     }
 

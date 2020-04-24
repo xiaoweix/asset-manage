@@ -2,12 +2,10 @@ package com.assetManage.tusdt.controller;
 
 import com.assetManage.tusdt.base.common.ResponseData;
 import com.assetManage.tusdt.base.constants.Response;
+import com.assetManage.tusdt.constants.CommonConstant;
 import com.assetManage.tusdt.model.User;
-import com.assetManage.tusdt.model.bo.RegisterUserBO;
 import com.assetManage.tusdt.model.bo.UserListBO;
 import com.assetManage.tusdt.service.UserInfoService;
-import com.assetManage.tusdt.utils.JwtUtils;
-import io.jsonwebtoken.Claims;
 import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,19 +27,6 @@ public class UserInfoController {
     @Resource
     private UserInfoService userInfoService;
 
-    @ApiOperation(value = "测试Hello", notes = "测试Hello")
-    @ResponseBody
-    @RequestMapping(value = "/Hello", method = RequestMethod.GET)
-    public ResponseData<String> HelloTusdt(HttpServletRequest request) {
-        Claims claims = JwtUtils.validateToken(request);
-
-        ResponseData<String> responseData = new ResponseData<>();
-        responseData.setOK("Hello Asset Manage!");
-        return responseData;
-    }
-
-
-
     @ApiOperation(value = "获取用户列表", notes = "参数name可以模糊查询")
     @ApiResponses({@ApiResponse(code = Response.OK, message = "查询成功"),})
     @ApiImplicitParams(
@@ -61,9 +46,15 @@ public class UserInfoController {
                                                 @RequestParam(value = "jobLevel",required = false) Integer jobLevel) {
 
         ResponseData<List<UserListBO>> responseData = new ResponseData<>();
+        int rank = (int) request.getAttribute("jobLevel");
+        if(rank < CommonConstant.JOB_LEVEL_ADMIN) {
+            responseData.setError("权限不足，仅管理员可见");
+            return responseData;
+        }
         List<UserListBO> userList = userInfoService.getUserList(userName);
         if(userList == null || userList.size() == 0) {
             responseData.setError("获取失败");
+            return responseData;
         }
         responseData.set("获取成功",userList);
         return responseData;
@@ -79,9 +70,15 @@ public class UserInfoController {
     )
     @RequestMapping(value = "/addUser", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseData<String> addUser(@RequestBody User user) {
+    public ResponseData<String> addUser(HttpServletRequest request, @RequestBody User user) {
 
-        ResponseData<String> responseData;
+        ResponseData<String> responseData = new ResponseData<>();
+        int rank = (int) request.getAttribute("jobLevel");
+        Integer userId = (Integer) request.getAttribute("id");
+        if(rank < CommonConstant.JOB_LEVEL_ADMIN) {
+            responseData.setError("权限不足");
+            return responseData;
+        }
         responseData = userInfoService.addUser(user);
         return responseData;
     }
@@ -99,6 +96,11 @@ public class UserInfoController {
                                                 @RequestParam(value = "userId",required = true) Integer userId) {
 
         ResponseData<String> responseData = new ResponseData<>();
+        int rank = (int) request.getAttribute("jobLevel");
+        if(rank < CommonConstant.JOB_LEVEL_SUPER_ADMIN) {
+            responseData.setError("权限不足");
+            return responseData;
+        }
         responseData = userInfoService.deleteUser(userId);
         return responseData;
     }
@@ -112,9 +114,14 @@ public class UserInfoController {
     )
     @RequestMapping(value = "/modifyUser", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseData<String> modifyUser(@RequestBody User user) {
+    public ResponseData<String> modifyUser(HttpServletRequest request,@RequestBody User user) {
 
-        ResponseData<String> responseData;
+        ResponseData<String> responseData = new ResponseData<>();
+        int rank = (int) request.getAttribute("jobLevel");
+        if(rank < CommonConstant.JOB_LEVEL_SUPER_ADMIN) {
+            responseData.setError("权限不足");
+            return responseData;
+        }
         responseData = userInfoService.modifyUserInfo(user);
         return responseData;
     }

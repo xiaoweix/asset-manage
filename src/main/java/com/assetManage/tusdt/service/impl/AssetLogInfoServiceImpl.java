@@ -1,11 +1,13 @@
 package com.assetManage.tusdt.service.impl;
 
-import com.assetManage.tusdt.base.common.ResponseData;
-import com.assetManage.tusdt.model.bo.AssetLogInfoDetailBO;
-import com.assetManage.tusdt.model.bo.AssetLogListBO;
+import com.assetManage.tusdt.dao.OperLogMapper;
+import com.assetManage.tusdt.model.OperLog;
+import com.assetManage.tusdt.model.bo.OperLogListBO;
 import com.assetManage.tusdt.service.AssetLogInfoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,23 +19,19 @@ import java.util.List;
 @Service
 public class AssetLogInfoServiceImpl implements AssetLogInfoService {
 
+    @Autowired
+    private OperLogMapper operLogMapper;
+
     @Override
-    public List<AssetLogListBO> getAssetApplyList(Integer currPage, Integer pageSize, Integer assetId, String userName, Integer status, String telephone, Integer jobLevel) {
-        return null;
+    public List<OperLogListBO> getOperLog(String userName, String dataFrom, String dataEnd) {
+        return operLogMapper.getOperLogList(userName,dataFrom,dataEnd);
     }
 
     @Override
-    public ResponseData<AssetLogInfoDetailBO> getApplyInfoDetail(Integer applyId) {
-        return null;
+    public void addOperLog(Integer userId, String remark) {
+        OperLog operLog = new OperLog(userId, remark, new Date());
+        operLogMapper.insert(operLog);
     }
 
-    @Override
-    public ResponseData<String> agreeApply(Integer applyId) {
-        return null;
-    }
 
-    @Override
-    public ResponseData<String> refuseApply(Integer applyId) {
-        return null;
-    }
 }

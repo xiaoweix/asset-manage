@@ -2,7 +2,9 @@ package com.assetManage.tusdt.controller;
 
 import com.assetManage.tusdt.base.common.ResponseData;
 import com.assetManage.tusdt.base.constants.Response;
+import com.assetManage.tusdt.model.User;
 import com.assetManage.tusdt.model.bo.RegisterUserBO;
+import com.assetManage.tusdt.model.bo.UserLoginBO;
 import com.assetManage.tusdt.service.UserInfoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -29,10 +31,10 @@ public class LoginRegisterController {
     @ApiResponses({@ApiResponse(code = Response.OK, message = "注册信息提交成功"),})
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseData<String> register(@RequestBody RegisterUserBO registerUserBO) {
+    public ResponseData<String> register(@RequestBody User user) {
 
         ResponseData<String> responseData;
-        responseData = userInfoService.registerUser(registerUserBO);
+        responseData = userInfoService.registerUser(user);
         return responseData;
     }
 
@@ -40,8 +42,8 @@ public class LoginRegisterController {
     @ApiResponses({@ApiResponse(code = Response.OK, message = "注册信息提交成功"),})
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     @ResponseBody
-    public String login(@RequestParam(value = "email",required = true) String email,
-                                      @RequestParam(value = "password",required = true) String password) {
+    public ResponseData<UserLoginBO> login(@RequestParam(value = "email",required = true) String email,
+                                           @RequestParam(value = "password",required = true) String password) {
 
 
         return userInfoService.login(email,password);
