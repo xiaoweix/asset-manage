@@ -276,7 +276,7 @@
 
   <select id="selectByUserName" resultType="com.assetManage.tusdt.model.User">
     select
-    id, user_name userName, password, signature, telephone, email, job_level jobLevel, status, is_delete isDelete
+    id, user_name userName, signature, telephone, email, job_level jobLevel, status, is_delete isDelete
     from user
     where 1>0
     <if test="userName != null">
@@ -290,5 +290,19 @@
     from user
     where  email = #{email,jdbcType=VARCHAR}
     and is_delete = 0
+  </select>
+
+  <select id="getPersonalDetail" resultType="com.assetManage.tusdt.model.bo.UserDetailBO">
+    select id, user_name userName, signature, telephone, email
+    from user
+    where  id = #{id,jdbcType=INTEGER}
+    and is_delete = 0
+  </select>
+
+  <select id="selectUserDetail" resultType="com.assetManage.tusdt.model.User">
+    select
+    id, user_name userName, signature, telephone, email, job_level jobLevel, status
+    from user
+    where id = #{id,jdbcType=INTEGER}
   </select>
 </mapper>

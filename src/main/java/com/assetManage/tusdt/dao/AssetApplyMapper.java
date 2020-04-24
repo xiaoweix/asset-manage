@@ -36,6 +36,6 @@ public interface AssetApplyMapper {
 
     List<AssetApplyListBO> getAssetApplyList(@Param("assetId") Integer assetId, @Param("userName") String userName, @Param("status") Integer status, @Param("telephone") String telephone, @Param("jobLevel") Integer jobLevel);
 
-    List<AssetUseHistoryBO> getAssetUseHistry(@Param("assetId") Integer assetId, @Param("assetName") String assetName, @Param("userName") String userName, @Param("type") Integer type);
+    List<AssetUseHistoryBO> getAssetUseHistory(@Param("assetId") Integer assetId, @Param("assetName") String assetName, @Param("userName") String userName, @Param("type") Integer type,@Param("userId") Integer userId);
 
 }

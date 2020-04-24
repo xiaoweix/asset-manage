@@ -4,6 +4,7 @@ import com.assetManage.tusdt.base.common.ResponseData;
 import com.assetManage.tusdt.base.constants.Response;
 import com.assetManage.tusdt.constants.CommonConstant;
 import com.assetManage.tusdt.model.User;
+import com.assetManage.tusdt.model.bo.UserDetailBO;
 import com.assetManage.tusdt.model.bo.UserListBO;
 import com.assetManage.tusdt.service.UserInfoService;
 import io.swagger.annotations.*;
@@ -126,5 +127,44 @@ public class UserInfoController {
         return responseData;
     }
 
+    @ApiOperation(value = "用户详情", notes = "用户详情")
+    @ApiResponses({@ApiResponse(code = Response.OK, message = "获取成功"),})
+    @ApiImplicitParams(
+            value = {
+                    @ApiImplicitParam(paramType = "header", name = "token", dataType = "String", required = true, value = "token"),
+            }
+    )
+    @RequestMapping(value = "/userDetail", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseData<User> userDetail(HttpServletRequest request,
+                                           @RequestParam(value = "userId",required = true) Integer userId) {
+
+        ResponseData<User> responseData = new ResponseData<>();
+        int rank = (int) request.getAttribute("jobLevel");
+        if(rank < CommonConstant.JOB_LEVEL_SUPER_ADMIN) {
+            responseData.setError("权限不足");
+            return responseData;
+        }
+        responseData = userInfoService.getUserDetail(userId);
+        return responseData;
+    }
+
+
+
+    @ApiOperation(value = "个人中心", notes = "个人中心")
+    @ApiResponses({@ApiResponse(code = Response.OK, message = "查询成功"),})
+    @ApiImplicitParams(
+            value = {
+                    @ApiImplicitParam(paramType = "header", name = "token", dataType = "String", required = true, value = "token"),
+            }
+    )
+    @RequestMapping(value = "/personalZone", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseData<UserDetailBO> personalZone(HttpServletRequest request) {
+
+        ResponseData<UserDetailBO> responseData = new ResponseData<>();
+        Integer userId = (Integer) request.getAttribute("id");
+        return userInfoService.getPersonnelDetail(userId);
+    }
 }
 

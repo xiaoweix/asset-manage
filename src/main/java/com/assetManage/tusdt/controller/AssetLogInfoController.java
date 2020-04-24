@@ -30,7 +30,7 @@ public class AssetLogInfoController {
 
 
 
-    @ApiOperation(value = "申请列表", notes = "参数name可以模糊查询")
+    @ApiOperation(value = "获取系统操作日志", notes = "参数name可以模糊查询")
     @ApiResponses({@ApiResponse(code = Response.OK, message = "查询成功"),})
     @ApiImplicitParams(
             value = {

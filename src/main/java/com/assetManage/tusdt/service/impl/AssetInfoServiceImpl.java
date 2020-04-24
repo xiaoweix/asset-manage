@@ -63,7 +63,7 @@ public class AssetInfoServiceImpl implements AssetInfoService {
     @Override
     public List<AssetUseHistoryBO> getAssetHistory(Integer currPage, Integer pageSize, Integer assetId, String assetName, String userName, Integer type) {
 
-        return assetApplyMapper.getAssetUseHistry(assetId, assetName, userName, type);
+        return assetApplyMapper.getAssetUseHistory(assetId, assetName, userName, type,null);
     }
 
     @Override

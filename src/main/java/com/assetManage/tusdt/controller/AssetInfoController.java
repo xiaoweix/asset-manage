@@ -6,12 +6,14 @@ import com.assetManage.tusdt.base.constants.Response;
 import com.assetManage.tusdt.constants.CommonConstant;
 import com.assetManage.tusdt.model.AssetInfo;
 import com.assetManage.tusdt.model.bo.AssetListBO;
+import com.assetManage.tusdt.model.bo.AssetUseHistoryBO;
 import com.assetManage.tusdt.service.AssetInfoService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 
 /**
@@ -116,6 +118,37 @@ public class AssetInfoController {
         }
         Integer userId = (Integer) request.getAttribute("id");
         responseData = assetInfoService.modifyAsset(userId,assetInfo);
+        return responseData;
+    }
+
+    @ApiOperation(value = "获取资源列表", notes = "参数name可以模糊查询")
+    @ApiResponses({@ApiResponse(code = Response.OK, message = "查询成功"),})
+    @ApiImplicitParams(
+            value = {
+                    @ApiImplicitParam(paramType = "header", name = "token", dataType = "String", required = true, value = "token"),
+            }
+    )
+    @RequestMapping(value = "/getHistoryList", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseData<List<AssetUseHistoryBO>> getHistoryList(HttpServletRequest request,
+                                                             @RequestParam(name = "currPage", required = false, defaultValue = "1") Integer currPage,
+                                                             @RequestParam(name = "pageSize", required = false, defaultValue = "20") Integer pageSize,
+                                                             @RequestParam(value = "assetName",required = false) String assetName,
+                                                             @RequestParam(value = "assetId",required = false) Integer assetId,
+                                                             @RequestParam(value = "userName",required = false) String userName,
+                                                             @RequestParam(value = "type",required = false) Integer type
+    ) {
+        ResponseData<List<AssetUseHistoryBO>> responseData = new ResponseData<>();
+        int rank = (int) request.getAttribute("jobLevel");
+        if(rank < CommonConstant.JOB_LEVEL_ADMIN) {
+            responseData.setError("权限不足");
+            return responseData;
+        }
+        List<AssetUseHistoryBO> assetList = assetInfoService.getAssetHistory(currPage, pageSize, assetId, assetName, userName, type);
+        if(assetList == null ) {
+            responseData.setError("获取失败");
+        }
+        responseData.set("获取成功",assetList);
         return responseData;
     }
 }

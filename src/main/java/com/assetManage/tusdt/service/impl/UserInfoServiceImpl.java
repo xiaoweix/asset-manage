@@ -2,6 +2,7 @@ package com.assetManage.tusdt.service.impl;
 
 import com.assetManage.tusdt.base.common.ResponseData;
 import com.assetManage.tusdt.constants.CommonConstant;
+import com.assetManage.tusdt.dao.AssetApplyMapper;
 import com.assetManage.tusdt.dao.UserMapper;
 import com.assetManage.tusdt.model.User;
 import com.assetManage.tusdt.model.bo.RegisterUserBO;
@@ -27,7 +28,10 @@ import java.util.List;
 public class UserInfoServiceImpl implements UserInfoService {
 
     @Autowired
-    UserMapper userMapper;
+    private UserMapper userMapper;
+
+    @Autowired
+    private AssetApplyMapper assetApplyMapper;
 
 
     @Override
@@ -38,6 +42,12 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     public ResponseData<String> addUser(User user) {
         ResponseData<String> responseData = new ResponseData<>();
+        User checkUserEmail = userMapper.loginByEmail(user.getEmail());
+
+        if(checkUserEmail != null) {
+            responseData.setError("该用户邮箱已存在！");
+            return responseData;
+        }
         user.setPassword(HashUtils.hashEncrypt(user.getPassword(),CommonConstant.PASSWORD_HASH));
         user.setIsDelete(CommonConstant.DELETED_NO);
         user.setStatus(CommonConstant.USER_STATUS_NORMAL);
@@ -52,27 +62,60 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Override
     public ResponseData<UserDetailBO> getPersonnelDetail(Integer id) {
-        return null;
+        ResponseData<UserDetailBO> responseData = new ResponseData<>();
+        UserDetailBO userDetailBO = userMapper.getPersonalDetail(id);
+        userDetailBO.setAssetUseHistoryBOList(assetApplyMapper.getAssetUseHistory(null,null,null,null,id));
+        responseData.setOK("获取成功",userDetailBO);
+        return responseData;
     }
 
     @Override
     public ResponseData<User> getUserDetail(Integer id) {
-        return null;
+        ResponseData<User> responseData = new ResponseData<>();
+        User user = userMapper.selectUserDetail(id);
+        responseData.setOK("获取成功",user);
+        return responseData;
     }
 
     @Override
     public ResponseData<String> deleteUser(Integer id) {
-        return null;
+        ResponseData<String> responseData = new ResponseData<>();
+        User user = userMapper.selectByPrimaryKey(id);
+        user.setIsDelete(CommonConstant.DELETED_YES);
+        userMapper.updateByPrimaryKeySelective(user);
+        responseData.setOK("删除成功");
+        return responseData;
     }
 
     @Override
     public ResponseData<String> changeUserStatus(Integer id, Integer status) {
-        return null;
+        ResponseData<String> responseData = new ResponseData<>();
+        User user = userMapper.selectByPrimaryKey(id);
+        if(CommonConstant.USER_STATUS_NORMAL.equals(status)) {
+            user.setStatus(CommonConstant.USER_STATUS_ABNORMAL);
+        } else if(CommonConstant.USER_STATUS_ABNORMAL.equals(status)){
+            user.setStatus(CommonConstant.USER_STATUS_NORMAL);
+        }
+        responseData.setOK("更改成功");
+        return responseData;
     }
 
     @Override
     public ResponseData<String> modifyUserInfo(User user) {
-        return null;
+        ResponseData<String> responseData = new ResponseData<>();
+        User checkUserEmail = userMapper.loginByEmail(user.getEmail());
+
+        if(checkUserEmail != null) {
+            responseData.setError("该用户邮箱已存在！");
+            return responseData;
+        }
+        Integer result = userMapper.updateByPrimaryKeySelective(user);
+        if (result == 1) {
+            responseData.setOK("修改成功");
+        } else {
+            responseData.setError("修改失败");
+        }
+        return responseData;
     }
 
     @Override

@@ -33,8 +33,6 @@ public class DataVisibleController {
     @ResponseBody
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public ResponseData<IndexDataBO> index(HttpServletRequest request) {
-        Claims claims = JwtUtils.validateToken(request);
-
         ResponseData<IndexDataBO> result = dataVisibleService.getIndexData();
         return result;
     }

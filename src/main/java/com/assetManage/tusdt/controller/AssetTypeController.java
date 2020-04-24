@@ -2,6 +2,7 @@ package com.assetManage.tusdt.controller;
 
 import com.assetManage.tusdt.base.common.ResponseData;
 import com.assetManage.tusdt.base.constants.Response;
+import com.assetManage.tusdt.constants.CommonConstant;
 import com.assetManage.tusdt.model.AssetType;
 import com.assetManage.tusdt.service.AssetTypeService;
 import io.swagger.annotations.*;
@@ -37,7 +38,13 @@ public class AssetTypeController {
     @ResponseBody
     public ResponseData<String> addAssetType(HttpServletRequest request, @RequestBody String assetName) {
 
-        ResponseData<String> responseData = null;
+        ResponseData<String> responseData = new ResponseData<>();
+        int rank = (int) request.getAttribute("jobLevel");
+        Integer userId = (Integer) request.getAttribute("id");
+        if(rank < CommonConstant.JOB_LEVEL_ADMIN) {
+            responseData.setError("权限不足");
+            return responseData;
+        }
         responseData = assetTypeService.addAssetType(assetName);
 
         return responseData;
@@ -56,7 +63,7 @@ public class AssetTypeController {
 
         ResponseData<List<AssetType>> responseData = new ResponseData<>();
         List<AssetType> assetTypeList = assetTypeService.getAssetTypeList();
-        if(assetTypeList == null || assetTypeList.size() == 0) {
+        if(assetTypeList == null) {
             responseData.setError("获取失败");
         }
         responseData.set("获取成功",assetTypeList);
@@ -76,6 +83,12 @@ public class AssetTypeController {
                                                          @RequestParam(value = "typeId",required = false) Integer typeId) {
 
         ResponseData<String> responseData = new ResponseData<>();
+        int rank = (int) request.getAttribute("jobLevel");
+        Integer userId = (Integer) request.getAttribute("id");
+        if(rank < CommonConstant.JOB_LEVEL_ADMIN) {
+            responseData.setError("权限不足");
+            return responseData;
+        }
         responseData = assetTypeService.removeAssetType(typeId);
         return responseData;
     }

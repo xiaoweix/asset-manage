@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.assetManage.tusdt.model.User;
 import com.assetManage.tusdt.model.UserExample;
+import com.assetManage.tusdt.model.bo.UserDetailBO;
 import com.assetManage.tusdt.model.bo.UserListBO;
 import org.apache.ibatis.annotations.Param;
 
@@ -33,4 +34,8 @@ public interface UserMapper {
     List<UserListBO> selectByUserName(@Param("userName") String userName);
 
     User loginByEmail(@Param("email") String email);
+
+    UserDetailBO getPersonalDetail(@Param("id") Integer id);
+
+    User selectUserDetail(Integer id);
 }
