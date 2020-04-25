@@ -9,12 +9,14 @@ import com.assetManage.tusdt.model.bo.RegisterUserBO;
 import com.assetManage.tusdt.model.bo.UserDetailBO;
 import com.assetManage.tusdt.model.bo.UserListBO;
 import com.assetManage.tusdt.model.bo.UserLoginBO;
+import com.assetManage.tusdt.service.AssetLogInfoService;
 import com.assetManage.tusdt.service.UserInfoService;
 import com.assetManage.tusdt.utils.HashUtils;
 import com.assetManage.tusdt.utils.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 
@@ -33,6 +35,9 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Autowired
     private AssetApplyMapper assetApplyMapper;
 
+    @Resource
+    private AssetLogInfoService assetLogInfoService;
+
 
     @Override
     public List<UserListBO> getUserList(String userName) {
@@ -40,7 +45,7 @@ public class UserInfoServiceImpl implements UserInfoService {
     }
 
     @Override
-    public ResponseData<String> addUser(User user) {
+    public ResponseData<String> addUser(User user , Integer userId) {
         ResponseData<String> responseData = new ResponseData<>();
         User checkUserEmail = userMapper.loginByEmail(user.getEmail());
 
@@ -54,6 +59,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         Integer result = userMapper.insert(user);
         if (result == 1) {
             responseData.setOK("添加成功");
+            assetLogInfoService.addOperLog(userId,String.format("新增用户 '%s' ",user.getUserName()));
         } else {
             responseData.setError("添加失败");
         }
@@ -78,11 +84,12 @@ public class UserInfoServiceImpl implements UserInfoService {
     }
 
     @Override
-    public ResponseData<String> deleteUser(Integer id) {
+    public ResponseData<String> deleteUser(Integer id, Integer adminId) {
         ResponseData<String> responseData = new ResponseData<>();
         User user = userMapper.selectByPrimaryKey(id);
         user.setIsDelete(CommonConstant.DELETED_YES);
         userMapper.updateByPrimaryKeySelective(user);
+        assetLogInfoService.addOperLog(adminId,String.format("删除用户 '%s' ",user.getUserName()));
         responseData.setOK("删除成功");
         return responseData;
     }

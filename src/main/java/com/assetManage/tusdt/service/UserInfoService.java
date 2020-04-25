@@ -26,7 +26,7 @@ public interface UserInfoService {
      * @param user
      * @return
      */
-    ResponseData<String> addUser(User user);
+    ResponseData<String> addUser(User user, Integer userId);
 
     /**
      * 个人中心
@@ -50,7 +50,7 @@ public interface UserInfoService {
      * @param id
      * @return
      */
-    ResponseData<String> deleteUser(Integer id);
+    ResponseData<String> deleteUser(Integer id, Integer adminId);
 
 
     /**

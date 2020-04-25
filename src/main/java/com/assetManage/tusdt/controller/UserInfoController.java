@@ -86,7 +86,7 @@ public class UserInfoController {
             responseData.setError("权限不足");
             return responseData;
         }
-        responseData = userInfoService.addUser(user);
+        responseData = userInfoService.addUser(user,userId);
         return responseData;
     }
 
@@ -103,12 +103,13 @@ public class UserInfoController {
                                                 @RequestParam(value = "userId",required = true) Integer userId) {
 
         ResponseData<String> responseData = new ResponseData<>();
+        Integer adminId = (Integer) request.getAttribute("id");
         int rank = (int) request.getAttribute("jobLevel");
         if(rank < CommonConstant.JOB_LEVEL_SUPER_ADMIN) {
             responseData.setError("权限不足");
             return responseData;
         }
-        responseData = userInfoService.deleteUser(userId);
+        responseData = userInfoService.deleteUser(userId,adminId);
         return responseData;
     }
 
