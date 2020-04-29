@@ -18,6 +18,8 @@ public class MailUtil {
      * @param code
      */
     public static void sendMail(String to, String code) {
+
+
         // Session对象:
         Properties props = new Properties();
         props.setProperty("mail.smtp.host", "smtp.qq.com"); // 设置主机地址
@@ -56,7 +58,7 @@ public class MailUtil {
             transport.sendMessage(message, message.getAllRecipients());
 
             // Transport对象:
-            Transport.send(message);
+           // Transport.send(message);
         } catch (AddressException e) {
             e.printStackTrace();
         } catch (MessagingException e) {

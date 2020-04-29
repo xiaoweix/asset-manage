@@ -22,4 +22,4 @@ logging:
         mapper : debug
 
 cbs:
-  imagesPath: /Users/tusdao_xxw/Pictures/
+  imagesPath: /root/java/assetManage/picture
