@@ -31,6 +31,7 @@ public class EmailServiceImpl implements EmailService {
         return responseData;
     }
 
+
     @Override
     public ResponseData<String> checkEmailCode(String email, Integer emailCode) {
         ResponseData<String> responseData = new ResponseData<>();
