@@ -18,7 +18,7 @@ import java.util.List;
  */
 public interface UserInfoService {
 
-    List<UserListBO> getUserList(String userName);
+    List<User> getUserList(String userName, Integer userId);
 
     /**
      * 新建用户
