@@ -4,7 +4,9 @@ import com.assetManage.tusdt.base.common.ResponseData;
 import com.assetManage.tusdt.base.constants.Response;
 import com.assetManage.tusdt.constants.CommonConstant;
 import com.assetManage.tusdt.model.AssetApply;
+import com.assetManage.tusdt.model.AssetInfo;
 import com.assetManage.tusdt.model.bo.AssetApplyListBO;
+import com.assetManage.tusdt.model.bo.AssetLogInfoDetailBO;
 import com.assetManage.tusdt.model.bo.WarehouseBO;
 import com.assetManage.tusdt.service.AssetApplyService;
 import com.github.pagehelper.PageHelper;
@@ -124,6 +126,21 @@ public class AssetApplyController {
             return responseData;
         }
         responseData = assetApplyService.refuseApply(applyId);
+        return responseData;
+    }
+
+    @ApiOperation(value = "获取资源详情", notes = "参数name可以模糊查询")
+    @ApiResponses({@ApiResponse(code = Response.OK, message = "查询成功"),})
+    @ApiImplicitParams(
+            value = {
+                    @ApiImplicitParam(paramType = "header", name = "token", dataType = "String", required = true, value = "token"),
+            }
+    )
+    @RequestMapping(value = "/assetApplyDetail", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseData<AssetLogInfoDetailBO> assetApplyDetail(@RequestParam(name = "id", required = true, defaultValue = "1") Integer id) {
+
+        ResponseData<AssetLogInfoDetailBO> responseData = assetApplyService.getApplyInfoDetail(id);
         return responseData;
     }
 }

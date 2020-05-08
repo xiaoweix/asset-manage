@@ -36,8 +36,11 @@ public class AssetApplyServiceImpl implements AssetApplyService {
     }
 
     @Override
-    public AssetLogInfoDetailBO getApplyInfoDetail(Integer applyId) {
-        return assetApplyMapper.selectApplyDetail(applyId);
+    public ResponseData<AssetLogInfoDetailBO> getApplyInfoDetail(Integer applyId) {
+        ResponseData<AssetLogInfoDetailBO> responseData = new ResponseData<>();
+        AssetLogInfoDetailBO assetLogInfoDetailBO = assetApplyMapper.selectApplyDetail(applyId);
+        responseData.setOK("获取成功",assetLogInfoDetailBO);
+        return responseData;
     }
 
     @Override

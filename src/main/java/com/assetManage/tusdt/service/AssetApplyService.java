@@ -33,7 +33,7 @@ public interface AssetApplyService {
      * @param applyId
      * @return
      */
-    AssetLogInfoDetailBO getApplyInfoDetail(Integer applyId);
+    ResponseData<AssetLogInfoDetailBO> getApplyInfoDetail(Integer applyId);
 
     /**
      * 同意申请

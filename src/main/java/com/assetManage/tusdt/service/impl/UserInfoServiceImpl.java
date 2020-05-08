@@ -40,7 +40,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 
     @Override
-    public List<UserListBO> getUserList(String userName) {
+    public List<UserListBO> getUserList(String userName, Integer userId) {
         return userMapper.selectByUserName(userName);
     }
 
